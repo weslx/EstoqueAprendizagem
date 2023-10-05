@@ -1,22 +1,22 @@
-import { NextResponse } from "next/server";
-import { Prisma, PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
-// var inputt = document.getElementById("").value;
-// receber valor do input e fazer a request ao banco de dados
+const prisma = new PrismaClient();
 
-// receber dados e mostrar na tela
-
-export async function GET(request) {
-  const prisma = new PrismaClient();
-
+export async function addUser(email, name) {
   const user = await prisma.user.create({
     data: {
-      email: "alicse@example.com",
-      name: "Alice",
+      email: email,
+      name: name,
     },
   });
-  const lista = prisma.user.findMany();
-  console.log(lista);
+  return user;
+}
 
-  return console.log(user);
+export async function removeUser(email) {
+  const user = await prisma.user.delete({
+    where: {
+      email: email,
+    },
+  });
+  return user;
 }

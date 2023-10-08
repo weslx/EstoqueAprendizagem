@@ -48,25 +48,26 @@ export default function Home() {
   };
 
   return (
-    <div className="flex justify-around">
-      <div className="w-1/2 p-4">
-        <h2 className="text-lg font-bold mb-4">Adicionar Itens</h2>
+    <div>
+      <div>
+        <h2>Adicionar Itens</h2>
         <form onSubmit={handleAddSubmit}>
-          <input className="block mb-2" type="text" name="nome" placeholder="Nome" onChange={handleAddChange} />
-          <input className="block mb-2" type="text" name="cBarras" placeholder="C.Barras" onChange={handleAddChange} />
-          <input className="block mb-2" type="text" name="id" placeholder="Id" onChange={handleAddChange} />
-          <input className="block mb-2" type="text" name="localizacao" placeholder="Localização" onChange={handleAddChange} />
-          <button className="mt-4 p-2 bg-blue-500 text-white">Submit</button>
+          <input type="text" name="nome" placeholder="Nome" onChange={handleAddChange} />
+          <input type="text" name="cBarras" placeholder="C.Barras" onChange={handleAddChange} />
+          <input type="text" name="id" placeholder="Id" onChange={handleAddChange} />
+          <input type="text" name="localizacao" placeholder="Localização" onChange={handleAddChange} />
+          <button>Submit</button>
         </form>
       </div>
-      <div className="w-1/2 p-4">
-        <h2 className="text-lg font-bold mb-4">Remover Itens</h2>
+      <div>
+        <h2>Remover Itens</h2>
         <form onSubmit={handleRemoveSubmit}>
-          <input className="block mb-2" type="text" name="id" placeholder="Id" onChange={handleRemoveChange} />
-          <input className="block mb-2" type="text" name="local" placeholder="Local" onChange={handleRemoveChange} />
-          <button className="mt-4 p-2 bg-red-500 text-white">Submit</button>
+          <input type="text" name="id" placeholder="Id" onChange={handleRemoveChange} />
+          <input type="text" name="local" placeholder="Local" onChange={handleRemoveChange} />
+          <button>Submit</button>
         </form>
       </div>
     </div>
   );
+
 }

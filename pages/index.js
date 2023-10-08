@@ -42,10 +42,18 @@ export default function Home() {
     console.log({ nome, cBarras, id, localizacao });
   };
 
-  const handleRemoveSubmit = (e) => {
-    e.preventDefault();
-    console.log({ id: removeId, local });
-  };
+  async function handleRemoveSubmit(e) {
+    e.preventDefault()
+  
+    const response = await fetch(`http://localhost:3000/api/delete/${removeId}`, {
+      method: 'DELETE',
+    })
+  
+    const data = await response.json()
+  
+    console.log(data)
+  }
+  
 
   return (
     <div>
@@ -63,7 +71,7 @@ export default function Home() {
         <h2>Remover Itens</h2>
         <form onSubmit={handleRemoveSubmit}>
           <input type="text" name="id" placeholder="Id" onChange={handleRemoveChange} />
-          <input type="text" name="local" placeholder="Local" onChange={handleRemoveChange} />
+          <input type="text" name="local" placeholder="Local" onChange={handleRemoveSubmit} />
           <button>Submit</button>
         </form>
       </div>
@@ -71,3 +79,4 @@ export default function Home() {
   );
 
 }
+

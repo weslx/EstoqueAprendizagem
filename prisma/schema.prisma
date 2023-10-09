@@ -1,56 +1,65 @@
 generator client {
   provider = "prisma-client-js"
 }
- 
+
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
-model tabela {
-  id          Int     @id @default(autoincrement())
-  products_id Int     @unique
-  datetime    DateTime
-  @@map("tabela")
+model Box {
+  id       Int       @id @default(autoincrement())
+  datetime DateTime
+  products Product[]
+  Stock    Stock[]
+  Remove   Remove[]
 }
 
-model products {
-  id          Int     @id @default(autoincrement())
-  products_name_id Int     @unique
-  box_id      Int
-  quantity_box Int
-  quantity_item Int
-  @@map("products")
+model Product {
+  id             Int          @id @default(autoincrement())
+  productsNameId Int
+  boxId          Int
+  quantityBox    Int
+  quantityItem   Int
+  box            Box          @relation(fields: [boxId], references: [id])
+  productsName   ProductsName @relation(fields: [productsNameId], references: [id])
+  stock          Stock[]
+  Remove         Remove[]
 }
 
-model products_name {
-  id          Int     @id @default(autoincrement())
-  name        String
-  @@map("products_name")
+model ProductsName {
+  id       Int       @id @default(autoincrement())
+  name     String
+  products Product[]
 }
 
-model stock {
-  id          Int     @id @default(autoincrement())
-  box_id      Int
-  products_id Int
-  shelfs_sections_id Int
-  @@map("stock")
+model Stock {
+  id               Int            @id @default(autoincrement())
+  boxId            Int
+  productsId       Int
+  shelfsSectionsId Int
+  box              Box            @relation(fields: [boxId], references: [id])
+  product          Product        @relation(fields: [productsId], references: [id])
+  shelfsSections   ShelfsSections @relation(fields: [shelfsSectionsId], references: [id])
 }
 
-model shelfs_sections {
-  id          Int     @id @default(autoincrement())
-  shelf       String
-  section     Int
-  @@map("shelfs_sections")
+model ShelfsSections {
+  id      Int      @id @default(autoincrement())
+  shelf   String
+  section Int
+  stock   Stock[]
+  Remove  Remove[]
 }
 
-model remove {
-  id          Int     @id @default(autoincrement())
-  products_id Int
-  box_id      Int
-  shelfs_sections_id Int
-  quantity_box Int
-  datetime    DateTime
-  @@map("remove")
+model Remove {
+  id               Int            @id @default(autoincrement())
+  productsId       Int
+  boxId            Int
+  shelfsSectionsId Int
+  quantityBox      Int
+  datetime         DateTime
+  product          Product        @relation(fields: [productsId], references: [id])
+  box              Box            @relation(fields: [boxId], references: [id])
+  shelfsSections   ShelfsSections @relation(fields: [shelfsSectionsId], references: [id])
 }

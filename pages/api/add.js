@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 
 export default async function handle(req, res) {
   try {
-    const { datetime, productId, nameId, shelf, section, quantityBox, quantityItem } = req.body
+    const { datetime, name, nameId,shelf,section, quantityBox, quantityItem } = req.body
 
     const box = await prisma.box.create({
       data: {
@@ -17,7 +17,7 @@ export default async function handle(req, res) {
         productsName: {
           connectOrCreate: {
             where: { id: Number(nameId) },
-            create: { name: "teste" },
+            create: { name: name },
           },
         },
         box: {
@@ -30,7 +30,7 @@ export default async function handle(req, res) {
 
     const shelfsSections = await prisma.shelfsSections.create({
       data: {
-        shelf: "t",
+        shelf: shelf,
         section: Number(section),
       },
     })

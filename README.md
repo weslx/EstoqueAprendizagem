@@ -1,40 +1,36 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Essa e uma web aplicação para um aplicativo de estoque de mercado onde o usuario insere as informaçoes do produto e ele ou adiciona ou apaga as informaçoes do banco de dados
 
-First, run the development server:
+use isso para iniciar o projeto:
 
 ```bash
+npm i
+# e
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+abra [http://localhost:3000](http://localhost:3000) no navegador para ver o resultado.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Parte do codigo onde e pego as informaçoes do front-end e enviando elas para o backend usando useState e tranformado em string `pages/index.js`.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Onde e deletado o produto do banco de dados fica em [http://localhost:3000/api/delete/[id].js](http://localhost:3000/api/delete/[id].js). ele usa [id] pois e uma rota dinamica criada pelo nextJs `pages/api/delete/[id].js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Onde e adicionado ao banco fica em `pages/api/add` ele recebe uma string de informaçoes faz a conexão usando prisma [Prisma](https://www.prisma.io/docs). Testei essa aplicação com MySQL local e Postgres do Vercel.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Saiba Mais
 
-## Learn More
+Para aprender mais sobre o Next.js, confira os seguintes recursos:
 
-To learn more about Next.js, take a look at the following resources:
+- [Documentação do Next.js](https://nextjs.org/docs) - aprenda sobre os recursos e a API do Next.js.
+- [Aprenda Next.js](https://nextjs.org/learn) - um tutorial interativo do Next.js.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Você pode conferir [o repositório do Next.js no GitHub](https://github.com/vercel/next.js/) - seus comentários e contribuições são bem-vindos!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Implante na Vercel
 
-## Deploy on Vercel
+A maneira mais fácil de implantar seu aplicativo Next.js é usar a [Plataforma Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) dos criadores do Next.js.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Confira nossa [documentação de implantação do Next.js](https://nextjs.org/docs/deployment) para mais detalhes.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

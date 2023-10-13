@@ -22,5 +22,7 @@ export default async function handle(req, res) {
     res.json(product);
   } catch (error) {
     res.status(500).json({ error: "Ocorreu um erro ao recuperar o produto" });
+  } finally {
+    await prisma.$disconnect();
   }
 }

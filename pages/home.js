@@ -10,7 +10,6 @@ export default function Home() {
   const [quantityBox, setQuantityBox] = useState("");
   const [quantityItem, setQuantityItem] = useState("");
   const [removeId, setRemoveId] = useState("");
-  const [local, setLocal] = useState("");
 
   const handleAddChange = (e) => {
     switch (e.target.name) {

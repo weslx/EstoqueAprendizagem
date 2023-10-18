@@ -8,7 +8,7 @@ function ProductPage() {
 
   useEffect(() => {
     if (id) {
-      fetch(`http://localhost:3000/api/find/${id}`)
+      fetch(`https://estoque-aprendizagem.vercel.app/api/find/${id}`)
         .then((res) => res.json())
         .then((data) => setProduct(data));
     }

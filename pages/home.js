@@ -64,16 +64,13 @@ export default function Home() {
 
     console.log(item);
 
-    const response = await fetch(
-      "https://estoque-aprendizagem.vercel.app/api/add",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(item),
-      }
-    );
+    const response = await fetch("http://localhost:3000/api/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(item),
+    });
 
     if (!response.ok) {
       console.error("Erro ao adicionar item", response);
@@ -87,7 +84,7 @@ export default function Home() {
     e.preventDefault();
 
     const response = await fetch(
-      `https://estoque-aprendizagem.vercel.app/api/delete/${removeId}`,
+      `http://localhost:3000/api/delete/${removeId}`,
       {
         method: "DELETE",
       }
@@ -99,72 +96,78 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <div>
-        <h2>Adicionar Itens</h2>
-        <form onSubmit={handleAddSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="name"
-            onChange={handleAddChange}
-          />
-          <input
-            type="text"
-            name="nameId"
-            placeholder="Name ID"
-            onChange={handleAddChange}
-          />
-          <input
-            type="text"
-            name="id"
-            placeholder="ID"
-            onChange={handleAddChange}
-          />
-          <input
-            type="text"
-            name="shelf"
-            placeholder="Prateleira"
-            onChange={handleAddChange}
-          />
-          <input
-            type="text"
-            name="section"
-            placeholder="Seção"
-            onChange={handleAddChange}
-          />
-          <input
-            type="text"
-            name="quantityBox"
-            placeholder="Quantidade na Caixa"
-            onChange={handleAddChange}
-          />
-          <input
-            type="text"
-            name="quantityItem"
-            placeholder="Quantidade do Item"
-            onChange={handleAddChange}
-          />
-          <button>Submit</button>
-        </form>
+    <div class="content">
+      <div class="add">
+        <h2>Adicionar Item</h2>
+        <div class="addcontent">
+          <div class="inputs">
+            <form onSubmit={handleAddSubmit}>
+              <input
+                class="inpt1"
+                type="text"
+                placeholder="Nome"
+                name="name"
+                onChange={handleAddChange}
+              />
+              <input
+                class="inpt1"
+                type="text"
+                name="nameId"
+                placeholder="Name ID"
+                onChange={handleAddChange}
+              />
+              <input
+                class="inpt1"
+                type="text"
+                placeholder="Prateleira"
+                name="shelf"
+                onChange={handleAddChange}
+              />
+              <input
+                class="inpt1"
+                type="text"
+                placeholder="Seção"
+                name="section"
+                onChange={handleAddChange}
+              />
+              <input
+                class="inpt1"
+                type="text"
+                name="quantityBox"
+                placeholder="Quantidade na Caixa"
+                onChange={handleAddChange}
+              />
+              <input
+                class="inpt1"
+                type="text"
+                name="quantityItem"
+                placeholder="Quantidade do Item"
+                onChange={handleAddChange}
+              />
+              <button id="bt1">Adicionar</button>
+            </form>
+          </div>
+        </div>
       </div>
-      <div>
-        <h2>Remover Itens</h2>
-        <form onSubmit={handleRemoveSubmit}>
-          <input
-            type="text"
-            name="id"
-            placeholder="ID"
-            onChange={handleRemoveChange}
-          />
-          <input
-            type="text"
-            name="local"
-            placeholder="Localização"
-            onChange={handleRemoveSubmit}
-          />
-          <button>Submit</button>
-        </form>
+      <a href="table.html">
+        <button id="bt">Ver tabela</button>
+      </a>
+      <div class="rmv">
+        <h2>Remover Item</h2>
+        <div class="addcontent">
+          <div class="inputs">
+            <form onSubmit={handleRemoveSubmit}>
+              <input
+                class="inpt2"
+                type="text"
+                placeholder="ID"
+                name="id"
+                onChange={handleRemoveChange}
+              />
+              <button id="bt2">Remover</button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   );

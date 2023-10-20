@@ -1,63 +1,33 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 export default async function handle(req, res) {
   try {
-    const { datetime, name, nameId,shelf,section, quantityBox, quantityItem } = req.body
+    const { name, id, nameId, shelf, section, quantityItem } = req.body;
 
-    const box = await prisma.box.create({
+    const product = await prisma.products.create({
       data: {
-        datetime: new Date(datetime), // certifique-se de que datetime é uma string ISO 8601
-      },
-    })
-
-    const product = await prisma.product.create({
-      data: {
-        productsName: {
+        quantity_item: Number(quantityItem),
+        products_name: {
           connectOrCreate: {
             where: { id: Number(nameId) },
             create: { name: name },
           },
         },
-        box: {
-          connect: { id: box.id },
+        shelfs_sections: {
+          connectOrCreate: {
+            where: { id: 11 },
+            create: { shelf: shelf, section: Number(section) },
+          },
         },
-        quantityBox: Number(quantityBox),
-        quantityItem: Number(quantityItem),
       },
-    })
+    });
 
-    const shelfsSections = await prisma.shelfsSections.create({
-      data: {
-        shelf: shelf,
-        section: Number(section),
-      },
-    })
-
-    const result = await prisma.$transaction([
-      prisma.stock.create({
-        data: {
-          boxId: box.id,
-          productsId: product.id,
-          shelfsSectionsId: shelfsSections.id,
-        },
-      }),
-      prisma.remove.create({
-        data: {
-          productsId: product.id,
-          boxId: box.id,
-          shelfsSectionsId: shelfsSections.id,
-          quantityBox: Number(quantityBox),
-          datetime: new Date(datetime),
-        },
-      }),
-    ])
-
-    res.json(result)
+    res.json(product);
   } catch (error) {
-    console.error(error)
+    console.error(error);
   } finally {
-    await prisma.$disconnect()
+    await prisma.$disconnect();
   }
 }

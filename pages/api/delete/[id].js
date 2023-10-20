@@ -8,7 +8,7 @@ export default async function handle(req, res) {
   try {
     // Primeiro, encontre o produto que você deseja excluir
     const product = await prisma.product.findUnique({
-      where: { id: Number(id) },
+      where: { id: Number(id) }, // Procurando por id
       include: {
         box: true,
         productsName: true,

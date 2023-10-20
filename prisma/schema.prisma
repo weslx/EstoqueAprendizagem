@@ -8,58 +8,25 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
-model Box {
-  id       Int       @id @default(autoincrement())
-  datetime DateTime
-  products Product[]
-  Stock    Stock[]
-  Remove   Remove[]
+
+model products {
+  id                Int             @id @default(autoincrement())
+  products_name_id  Int
+  shelfs_sections_id Int             @default(autoincrement())
+  quantity_item     Int
+  products_name     products_name   @relation(fields: [products_name_id], references: [id])
+  shelfs_sections   shelfs_sections @relation(fields: [shelfs_sections_id], references: [id])
 }
 
-model Product {
-  id             Int          @id @default(autoincrement())
-  productsNameId Int
-  boxId          Int
-  quantityBox    Int
-  quantityItem   Int
-  box            Box          @relation(fields: [boxId], references: [id])
-  productsName   ProductsName @relation(fields: [productsNameId], references: [id])
-  stock          Stock[]
-  Remove         Remove[]
+model products_name {
+  id      Int       @id @default(autoincrement())
+  name    String
+  product products[]
 }
 
-model ProductsName {
-  id       Int       @id @default(autoincrement())
-  name     String
-  products Product[]
-}
-
-model Stock {
-  id               Int            @id @default(autoincrement())
-  boxId            Int
-  productsId       Int
-  shelfsSectionsId Int
-  box              Box            @relation(fields: [boxId], references: [id])
-  product          Product        @relation(fields: [productsId], references: [id])
-  shelfsSections   ShelfsSections @relation(fields: [shelfsSectionsId], references: [id])
-}
-
-model ShelfsSections {
-  id      Int      @id @default(autoincrement())
+model shelfs_sections {
+  id      Int       @id @default(autoincrement())
   shelf   String
   section Int
-  stock   Stock[]
-  Remove  Remove[]
-}
-
-model Remove {
-  id               Int            @id @default(autoincrement())
-  productsId       Int
-  boxId            Int
-  shelfsSectionsId Int
-  quantityBox      Int
-  datetime         DateTime
-  product          Product        @relation(fields: [productsId], references: [id])
-  box              Box            @relation(fields: [boxId], references: [id])
-  shelfsSections   ShelfsSections @relation(fields: [shelfsSectionsId], references: [id])
+  product products[]
 }

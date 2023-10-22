@@ -7,16 +7,11 @@ export default async function handle(req, res) {
 
   try {
     // Encontre o produto que você deseja obter
-    const product = await prisma.product.findUnique({
+    const product = await prisma.products.findUnique({
       where: { id: Number(id) },
       include: {
-        box: true,
-        productsName: true,
-        stock: {
-          include: {
-            shelfsSections: true,
-          },
-        },
+        products_name: true,
+        shelfs_sections: true,
       },
     });
     res.json(product);

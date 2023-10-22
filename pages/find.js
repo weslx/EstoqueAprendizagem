@@ -49,10 +49,10 @@ function ProductPage() {
                 </tr>
                 <tr>
                   <td>{id}</td>
-                  <td>{product.productsName.name}</td>
-                  <td>{product.quantityItem}</td>
-                  <td>{product.stock[0].shelfsSections.shelf}</td>
-                  <td>{product.stock[0].shelfsSections.section}</td>
+                  <td>{product.products_name.name}</td>
+                  <td>{product.quantity_item}</td>
+                  <td>{product.shelfs_sections.shelf}</td>
+                  <td>{product.shelfs_sections.section}</td>
                 </tr>
               </table>
             </div>

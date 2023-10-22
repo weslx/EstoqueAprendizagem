@@ -17,8 +17,9 @@ export default async function handle(req, res) {
           },
         },
         shelfs_sections: {
-          connect: {
-            id: Number(shelfs_sections_id),
+          connectOrCreate: {
+            where: { id: Number(shelfs_sections_id) },
+            create: { section: Number(section) },
           },
         },
       },

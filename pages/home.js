@@ -12,7 +12,7 @@ export default function Home() {
   const [quantityBox, setQuantityBox] = useState("");
   const [quantityItem, setQuantityItem] = useState("");
   const [removeId, setRemoveId] = useState("");
-
+  console.log("render");
   useEffect(() => {
     axios
       .get("http://localhost:3000/api/shelfs")
@@ -95,7 +95,7 @@ export default function Home() {
     e.preventDefault();
 
     const response = await fetch(
-      `https://estoque-aprendizagem.vercel.app/api/delete/${removeId}`,
+      `http://localhost:3000/api/delete/${removeId}`,
       {
         method: "DELETE",
       }

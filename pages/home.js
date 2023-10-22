@@ -1,15 +1,27 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Home() {
   const [name, setname] = useState("");
   const [nameId, setNameId] = useState("");
   const [id, setId] = useState("");
-  const [shelf, setShelf] = useState("");
+  const [shelfs, setShelfs] = useState([]);
+  const [selectedShelf, setSelectedShelf] = useState("");
   const [section, setSection] = useState("");
   const [quantityBox, setQuantityBox] = useState("");
   const [quantityItem, setQuantityItem] = useState("");
   const [removeId, setRemoveId] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/shelfs")
+      .then((response) => {
+        setShelfs(response.data);
+        setSelectedShelf(response.data[0].id);
+      })
+      .catch((error) => console.error("Error fetching shelfs:", error));
+  }, []);
 
   const handleAddChange = (e) => {
     switch (e.target.name) {
@@ -55,8 +67,7 @@ export default function Home() {
       datetime: new Date().toISOString(),
       name,
       nameId,
-      id,
-      shelf,
+      shelfs_sections_id: selectedShelf,
       section,
       quantityBox,
       quantityItem,
@@ -64,16 +75,13 @@ export default function Home() {
 
     console.log(item);
 
-    const response = await fetch(
-      "https://estoque-aprendizagem.vercel.app/api/add",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(item),
-      }
-    );
+    const response = await fetch("http://localhost:3000/api/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(item),
+    });
 
     if (!response.ok) {
       console.error("Erro ao adicionar item", response);
@@ -119,13 +127,18 @@ export default function Home() {
                 placeholder="Name ID"
                 onChange={handleAddChange}
               />
-              <input
-                class="inpt1"
-                type="text"
-                placeholder="Prateleira"
-                name="shelf"
-                onChange={handleAddChange}
-              />
+              <p>Qual prateleira</p> {/* Adicione esta linha */}
+              <select
+                value={selectedShelf}
+                onChange={(e) => setSelectedShelf(e.target.value)}
+              >
+                {shelfs.map((shelf) => (
+                  <option key={shelf.id} value={shelf.id}>
+                    {shelf.shelf}
+                  </option>
+                ))}
+              </select>
+              <br></br>
               <input
                 class="inpt1"
                 type="text"

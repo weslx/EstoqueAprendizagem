@@ -7,7 +7,6 @@ export default function Home() {
   const [id, setId] = useState("");
   const [shelf, setShelf] = useState("");
   const [section, setSection] = useState("");
-  const [quantityBox, setQuantityBox] = useState("");
   const [quantityItem, setQuantityItem] = useState("");
   const [removeId, setRemoveId] = useState("");
 
@@ -15,9 +14,6 @@ export default function Home() {
     switch (e.target.name) {
       case "name":
         setname(e.target.value);
-        break;
-      case "nameId":
-        setNameId(e.target.value);
         break;
       case "id":
         setId(e.target.value);
@@ -27,9 +23,6 @@ export default function Home() {
         break;
       case "section":
         setSection(e.target.value);
-        break;
-      case "quantityBox":
-        setQuantityBox(e.target.value);
         break;
       case "quantityItem":
         setQuantityItem(e.target.value);
@@ -54,11 +47,9 @@ export default function Home() {
     const item = {
       datetime: new Date().toISOString(),
       name,
-      nameId,
       id,
       shelf,
       section,
-      quantityBox,
       quantityItem,
     };
 
@@ -100,6 +91,7 @@ export default function Home() {
 
   return (
     <div class="content">
+      <title>Adicionar e remover</title>
       <div class="add">
         <h2>Adicionar Item</h2>
         <div class="addcontent">
@@ -115,13 +107,6 @@ export default function Home() {
               <input
                 class="inpt1"
                 type="text"
-                name="nameId"
-                placeholder="Name ID"
-                onChange={handleAddChange}
-              />
-              <input
-                class="inpt1"
-                type="text"
                 placeholder="Prateleira"
                 name="shelf"
                 onChange={handleAddChange}
@@ -131,13 +116,6 @@ export default function Home() {
                 type="text"
                 placeholder="Seção"
                 name="section"
-                onChange={handleAddChange}
-              />
-              <input
-                class="inpt1"
-                type="text"
-                name="quantityBox"
-                placeholder="Quantidade na Caixa"
                 onChange={handleAddChange}
               />
               <input

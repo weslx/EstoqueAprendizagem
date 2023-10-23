@@ -3,6 +3,7 @@ import Link from "next/link";
 
 const Index = () => (
   <div className="grid grid-cols-1 gap-4 p-4">
+    <title>Homepage</title>
     <h1 className="text-4xl font-bold text-center">Página Inicial</h1>
     <p className="text-center font-bold">Sera necessario fazer login</p>
     <Link href="/home">

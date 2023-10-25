@@ -1,63 +1,37 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 export default async function handle(req, res) {
   try {
-    const { datetime, name, nameId,shelf,section, quantityBox, quantityItem } = req.body
+    const { name, shelf, section, quantityItem } = req.body;
 
-    const box = await prisma.box.create({
+    const product = await prisma.products.create({
       data: {
-        datetime: new Date(datetime), // certifique-se de que datetime é uma string ISO 8601
-      },
-    })
-
-    const product = await prisma.product.create({
-      data: {
-        productsName: {
-          connectOrCreate: {
-            where: { id: Number(nameId) },
-            create: { name: name },
-          },
+        products_name: {
+          create: { name: name },
         },
-        box: {
-          connect: { id: box.id },
+        quantity_item: Number(quantityItem),
+        code_bar: {
+          create: { code: "aaaaa" },
         },
-        quantityBox: Number(quantityBox),
-        quantityItem: Number(quantityItem),
+        shelfs_sections: {
+          create: { shelf: "aa", sections: 1 },
+        },
       },
-    })
+    });
 
-    const shelfsSections = await prisma.shelfsSections.create({
+    const shelfs_sections = await prisma.shelfs_sections.create({
       data: {
         shelf: shelf,
-        section: Number(section),
+        sections: Number(section),
       },
-    })
+    });
 
-    const result = await prisma.$transaction([
-      prisma.stock.create({
-        data: {
-          boxId: box.id,
-          productsId: product.id,
-          shelfsSectionsId: shelfsSections.id,
-        },
-      }),
-      prisma.remove.create({
-        data: {
-          productsId: product.id,
-          boxId: box.id,
-          shelfsSectionsId: shelfsSections.id,
-          quantityBox: Number(quantityBox),
-          datetime: new Date(datetime),
-        },
-      }),
-    ])
-
-    res.json(result)
+    res.json(result);
   } catch (error) {
-    console.error(error)
+    console.error(error);
   } finally {
-    await prisma.$disconnect()
+    await prisma.$disconnect();
   }
 }

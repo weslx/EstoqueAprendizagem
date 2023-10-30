@@ -4,29 +4,29 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
-
 model products {
-  id                Int             @id @default(autoincrement())
-  products_name_id  Int
-  shelfs_sections_id Int             @default(autoincrement())
-  quantity_item     Int
-  products_name     products_name   @relation(fields: [products_name_id], references: [id])
-  shelfs_sections   shelfs_sections @relation(fields: [shelfs_sections_id], references: [id])
+  id                 Int             @id @default(autoincrement())
+  products_name_id   Int
+  shelfs_sections_id Int
+  quantity_item      Int
+  products_name      products_name   @relation(fields: [products_name_id], references: [id])
+  shelfs_sections    shelfs_sections @relation(fields: [shelfs_sections_id], references: [id])
 }
 
 model products_name {
-  id      Int       @id @default(autoincrement())
-  name    String
+  id      Int        @id @default(autoincrement())
+  name    String     @db.VarChar(64)
+  barcode Int
   product products[]
 }
 
 model shelfs_sections {
-  id      Int       @id @default(autoincrement())
-  shelf   String
+  id      Int        @id @default(autoincrement())
+  shelf   String     @db.VarChar(1)
   section Int
   product products[]
 }

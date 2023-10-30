@@ -29,7 +29,13 @@ export default async function handle(req, res) {
     // Exclua também as informações relacionadas em Box e ProductsName
 
     await prisma.products_name.delete({
-      where: { id: product.products_name.id },
+      where: { id: product.products_name_id },
+    });
+
+    await prisma.shelfs_sections.delete({
+      where: {
+        id: product.shelfs_sections_id,
+      },
     });
 
     // Retorne o produto excluído como resposta

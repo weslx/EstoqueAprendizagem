@@ -4,23 +4,20 @@ const prisma = new PrismaClient();
 
 export default async function handle(req, res) {
   try {
-    const { name, nameId, shelfs_sections_id, section, quantityItem } =
-      req.body;
+    let { name, barcode, shelf, section, quantity_item } = req.body;
 
+    // Convertendo 'barcode' para um número inteiro
+    barcode = parseInt(barcode);
+    quantity_item = parseInt(quantity_item);
+    section = parseInt(section);
     const product = await prisma.products.create({
       data: {
-        quantity_item: Number(quantityItem),
+        quantity_item,
         products_name: {
-          connectOrCreate: {
-            where: { id: Number(nameId) },
-            create: { name: name },
-          },
+          create: { name, barcode },
         },
         shelfs_sections: {
-          connectOrCreate: {
-            where: { id: Number(shelfs_sections_id) },
-            create: { section: Number(section) },
-          },
+          create: { shelf, section },
         },
       },
     });

@@ -4,47 +4,29 @@ import axios from "axios";
 
 export default function Home() {
   const [name, setname] = useState("");
-  const [nameId, setNameId] = useState("");
-  const [id, setId] = useState("");
-  const [shelfs, setShelfs] = useState([]);
-  const [selectedShelf, setSelectedShelf] = useState("");
+  const [shelf, setShelfs] = useState([]);
+  const [barcode, setbarcode] = useState(0); // Inicializado como um número
   const [section, setSection] = useState("");
-  const [quantityBox, setQuantityBox] = useState("");
-  const [quantityItem, setQuantityItem] = useState("");
+  const [quantity_item, setQuantityItem] = useState(0);
   const [removeId, setRemoveId] = useState("");
   console.log("render");
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/shelfs")
-      .then((response) => {
-        setShelfs(response.data);
-        setSelectedShelf(response.data[0].id);
-      })
-      .catch((error) => console.error("Error fetching shelfs:", error));
-  }, []);
 
   const handleAddChange = (e) => {
     switch (e.target.name) {
       case "name":
         setname(e.target.value);
         break;
-      case "nameId":
-        setNameId(e.target.value);
-        break;
-      case "id":
-        setId(e.target.value);
+      case "barcode":
+        setbarcode(parseInt(e.target.value)); // Convertendo o valor para um número inteiro
         break;
       case "shelf":
-        setShelf(e.target.value);
+        setShelfs(e.target.value);
         break;
       case "section":
         setSection(e.target.value);
         break;
-      case "quantityBox":
-        setQuantityBox(e.target.value);
-        break;
-      case "quantityItem":
-        setQuantityItem(e.target.value);
+      case "quantity_item":
+        setQuantityItem(parseInt(e.target.value));
         break;
     }
   };
@@ -64,13 +46,11 @@ export default function Home() {
     e.preventDefault();
 
     const item = {
-      datetime: new Date().toISOString(),
       name,
-      nameId,
-      shelfs_sections_id: selectedShelf,
+      barcode,
       section,
-      quantityBox,
-      quantityItem,
+      shelf,
+      quantity_item,
     };
 
     console.log(item);
@@ -107,83 +87,71 @@ export default function Home() {
   }
 
   return (
-    <div class="content">
-      <div class="add">
-        <h2>Adicionar Item</h2>
-        <div class="addcontent">
-          <div class="inputs">
-            <form onSubmit={handleAddSubmit}>
-              <input
-                class="inpt1"
-                type="text"
-                placeholder="Nome"
-                name="name"
-                onChange={handleAddChange}
-              />
-              <input
-                class="inpt1"
-                type="text"
-                name="nameId"
-                placeholder="Name ID"
-                onChange={handleAddChange}
-              />
-              <p>Qual prateleira</p> {/* Adicione esta linha */}
-              <select
-                value={selectedShelf}
-                onChange={(e) => setSelectedShelf(e.target.value)}
-              >
-                {shelfs.map((shelf) => (
-                  <option key={shelf.id} value={shelf.id}>
-                    {shelf.shelf}
-                  </option>
-                ))}
-              </select>
-              <br></br>
-              <input
-                class="inpt1"
-                type="text"
-                placeholder="Seção"
-                name="section"
-                onChange={handleAddChange}
-              />
-              <input
-                class="inpt1"
-                type="text"
-                name="quantityBox"
-                placeholder="Quantidade na Caixa"
-                onChange={handleAddChange}
-              />
-              <input
-                class="inpt1"
-                type="text"
-                name="quantityItem"
-                placeholder="Quantidade do Item"
-                onChange={handleAddChange}
-              />
-              <button id="bt1">Adicionar</button>
-            </form>
-          </div>
-        </div>
+    <div class="flex flex-wrap content-center justify-around p-10 bg-gray-100">
+      <div class="w-full sm:w-1/2 p-4 bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-4">Adicionar Item</h2>
+        <form onSubmit={handleAddSubmit} class="space-y-4">
+          <input
+            class="w-full p-2 border border-gray-300 rounded"
+            type="text"
+            placeholder="Nome"
+            name="name"
+            onChange={handleAddChange}
+          />
+          <input
+            class="w-full p-2 border border-gray-300 rounded"
+            type="text"
+            name="barcode"
+            placeholder="Codigo de barras"
+            onChange={handleAddChange}
+          />
+          <input
+            class="w-full p-2 border border-gray-300 rounded"
+            type="text"
+            name="shelf"
+            placeholder="Prateleira"
+            onChange={handleAddChange}
+          />
+          <input
+            class="w-full p-2 border border-gray-300 rounded"
+            type="text"
+            placeholder="Seção"
+            name="section"
+            onChange={handleAddChange}
+          />
+          <input
+            class="w-full p-2 border border-gray-300 rounded"
+            type="text"
+            name="quantity_item"
+            placeholder="Quantidade do Item"
+            onChange={handleAddChange}
+          />
+          <button
+            id="bt1"
+            class="w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            Adicionar
+          </button>
+        </form>
       </div>
-      <a href="table.html">
-        <button id="bt">Ver tabela</button>
-      </a>
-      <div class="rmv">
-        <h2>Remover Item</h2>
-        <div class="addcontent">
-          <div class="inputs">
-            <form onSubmit={handleRemoveSubmit}>
-              <input
-                class="inpt2"
-                type="text"
-                placeholder="ID"
-                name="id"
-                onChange={handleRemoveChange}
-              />
-              <button id="bt2">Remover</button>
-            </form>
-          </div>
-        </div>
+
+      <div class="w-full sm:w-1/2 p-4 bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-4">Remover Item</h2>
+        <form onSubmit={handleRemoveSubmit} class="space-y-4">
+          <input
+            class="w-full p-2 border border-gray-300 rounded"
+            type="text"
+            placeholder="ID"
+            name="id"
+            onChange={handleRemoveChange}
+          />
+          <button
+            id="bt2"
+            class="w-full py-2 px-4 bg-red-500 text-white rounded hover:bg-red-600"
+          >
+            Remover
+          </button>
+        </form>
       </div>
     </div>
   );

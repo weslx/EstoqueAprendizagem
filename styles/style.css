@@ -1,20 +1,8 @@
 body {
   background-color: #d4d2d2;
 }
-header {
-  color: white;
-  display: flex;
-  width: 100%;
-  height: 100px;
-  background-color: #6875aa;
-  margin-top: -9px;
-  padding-right: 17px;
-  margin-left: -9px;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  font-size: 50px;
-  font-family: "Bree Serif", serif;
+* {
+  font-family: "Eras ITC";
 }
 .content {
   display: flex;
@@ -34,7 +22,7 @@ header {
   width: 30%;
   height: 700px;
   border-radius: 50px;
-  background-color: #232530;
+  background-color: #167685;
   color: white;
   font-family: "Bree Serif", serif;
   text-align: center;
@@ -47,17 +35,18 @@ header {
   width: 30%;
   height: 700px;
   border-radius: 50px;
-  background-color: #232530;
+  background-color: #167685;
   color: white;
   font-family: "Bree Serif", serif;
   text-align: center;
   justify-content: center;
 }
+
 .addcontent {
   display: flex;
   flex-direction: column;
   border-radius: 50px;
-  background-color: #8592c8;
+  background-color: #80bfc9;
   width: 80%;
   height: 500px;
   align-self: center;
@@ -67,29 +56,45 @@ header {
 .inputs {
   margin-top: 30px;
 }
-#bt1, #bt2 {
-  color: #c2c2c2;
+h2 {
+  font-size: 30px;
+  color: #f0f8ff;
+}
+#bt1,
+#bt2 {
+  color: white;
   width: 40%;
   height: 70px;
   border-radius: 30px;
   border: none;
-  background-color: #535769;
-  font-family: "Bree Serif", serif;
-  font-size: 140%;
+  background-color: #df7c35;
+  font-size: 120%;
   cursor: pointer;
   transition: 0.3s;
+}
+.footer {
+  height: 40px;
+}
+#bt1 {
+  margin-top: 30px;
 }
 #bt1:hover {
   box-shadow: 3px 10px 5px #656a7f;
   transition-duration: 0.3s;
 }
-.inpt1, .inpt2 {
+.inpt1,
+.inpt2 {
   width: 70%;
-  height: 35%;
+  height: 50px;
   border-radius: 40px;
   border: none;
   margin-bottom: 35px;
   padding-left: 30px;
+}
+
+.inpt2 {
+  margin-top: 140px;
+  margin-bottom: 40px;
 }
 
 #bt2:hover {
@@ -97,18 +102,43 @@ header {
   transition-duration: 0.3s;
 }
 #bt {
-  color: #383f5a;
-  border: 3px solid #4e598191;
-  width: 100%;
+  color: white;
+  padding: 3px;
+  width: 110%;
   height: 70px;
   border-radius: 30px;
-  background-color: #b0b3c5;
-  font-family: "Bree Serif", serif;
-  font-size: 140%;
+  background-color: #df7c35;
+  font-size: 120%;
   cursor: pointer;
   transition: ease-in-out 0.3s;
 }
 #bt:hover {
   box-shadow: 3px 10px 5px #656a7f;
   transition-duration: 0.3s;
+}
+header {
+  color: white;
+  display: flex;
+  width: 100%;
+  height: 100px;
+  background-color: #6875aa;
+  margin-top: -9px;
+  padding-right: 17px;
+  margin-left: -9px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  font-family: "Bree Serif", serif;
+}
+@media only screen and (max-width: 570px) {
+  .add,
+  .rmv {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+  #bt {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 }

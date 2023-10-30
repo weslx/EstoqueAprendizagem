@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 function ProductPage() {
   const router = useRouter();
-  const [id, setId] = useState(""); // estado para armazenar o id digitado
+  const [id, setId] = useState("");
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -15,47 +15,54 @@ function ProductPage() {
   }, [id]);
 
   return (
-    <div>
-      <header>Estoque</header>
-      <h1>Tabela</h1>
+    <div className="min-h-screen bg-gray-100">
+      <header className="bg-blue-500 text-white p-4">Estoque</header>
+      <h1 className="text-center text-3xl font-bold my-4">Tabela</h1>
       <div className="container mx-auto p-4">
         <input
           id="pesquisa"
           type="text"
-          className="border-2 border-gray-300 p-2 rounded-md"
+          className="border-2 border-gray-300 p-2 rounded-md w-full"
           placeholder="Digite o id do produto"
           value={id}
           onChange={(e) => setId(e.target.value)}
         />
-        <br></br>
         <button
           id="buscar"
           type="submit"
-          className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2"
+          className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
         >
           Buscar
         </button>
-        {product && ( // se o produto existir, mostra os dados dele
-          <div className="mt-4">
-            <div className="mt-4">
-              <h1 className="text-4xl font-bold"></h1>
-              <table class="tabela">
+        {product && (
+          <div className="mt-4 bg-white p-4 rounded shadow">
+            <h1 className="text-xl font-bold mb-2">Detalhes do Produto:</h1>
+            <table className="w-full text-left border-collapse">
+              <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Nome</th>
-                  <th>Quantidade</th>
-                  <th>Prateleira</th>
-                  <th>Seção</th>
+                  <th className="py-2 px-4 border">ID</th>
+                  <th className="py-2 px-4 border">Nome</th>
+                  <th className="py-2 px-4 border">Quantidade</th>
+                  <th className="py-2 px-4 border">Prateleira</th>
+                  <th className="py-2 px-4 border">Seção</th>
                 </tr>
+              </thead>
+              <tbody>
                 <tr>
-                  <td>{id}</td>
-                  <td>{product.products_name.name}</td>
-                  <td>{product.quantity_item}</td>
-                  <td>{product.shelfs_sections.shelf}</td>
-                  <td>{product.shelfs_sections.section}</td>
+                  <td className="py-2 px-4 border">{id}</td>
+                  <td className="py-2 px-4 border">
+                    {product.products_name.name}
+                  </td>
+                  <td className="py-2 px-4 border">{product.quantity_item}</td>
+                  <td className="py-2 px-4 border">
+                    {product.shelfs_sections.shelf}
+                  </td>
+                  <td className="py-2 px-4 border">
+                    {product.shelfs_sections.section}
+                  </td>
                 </tr>
-              </table>
-            </div>
+              </tbody>
+            </table>
           </div>
         )}
       </div>

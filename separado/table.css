@@ -1,7 +1,7 @@
 body {
     background-color: #d4d3d2;
 }
-h1{
+#text{
     font-size: 50px;
     text-align: center;
     margin-top: 70px;
@@ -13,7 +13,7 @@ h1{
     margin-left: auto;
     margin-right: auto;
     width: 15%;
-    height: 30px;
+    height: 30px;a
     border: solid black 1px;
     border-radius: 5px;
     color: black;

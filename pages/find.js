@@ -19,7 +19,7 @@ function ProductPage() {
         .then((data) => setProduct(data));
     }
   }, [id]);
-
+  console.log(products_name);
   return (
     <div className="min-h-screen bg-gray-100">
       <header className="bg-blue-500 text-white p-4">Estoque</header>

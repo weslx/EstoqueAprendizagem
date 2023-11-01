@@ -1,0 +1,45 @@
+.sttitle{
+    margin-top: 5%;
+    font-family: "Bree Serif", serif;
+    color: #DF7C35;
+    font-size: 59px;
+}
+.stsub {
+    font-family: "Bree Serif", serif;
+    color: #565656;
+    text-align: center;
+}
+.stp{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    gap: 40%;
+}
+.stb1, .stb2{
+    display: flex;
+    background-color: #167685;
+    border-radius: 5px;
+    padding: 10px;
+    height: 150px;
+    width: 500px;
+    padding: 10px;
+    font-family: "Bree Serif", serif;
+    color:#a0e4ee;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    transition: ease-in-out 0.3s;
+}
+.stb1:hover, .stb2:hover{
+    box-shadow:#565656 5px 5px 5px;
+}
+.stb1{
+    margin-bottom: 5%;
+    margin-top: 3%;
+}

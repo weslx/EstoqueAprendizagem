@@ -87,40 +87,43 @@ export default function Home() {
   }
 
   return (
-    <div class="flex flex-wrap content-center justify-around p-10 bg-gray-100">
-      <div class="w-full sm:w-1/2 p-4 bg-white rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold mb-4">Adicionar Item</h2>
-        <form onSubmit={handleAddSubmit} class="space-y-4">
+    <div class="content">
+      <div class="add">
+        <h2 class="">Adicionar Item</h2>
+        <form onSubmit={handleAddSubmit} class="addcontent">
           <input
-            class="w-full p-2 border border-gray-300 rounded"
+            class="inpt1"
             type="text"
             placeholder="Nome"
             name="name"
             onChange={handleAddChange}
           />
           <input
-            class="w-full p-2 border border-gray-300 rounded"
+            class="inpt1"
             type="text"
             name="barcode"
             placeholder="Codigo de barras"
             onChange={handleAddChange}
           />
           <input
-            class="w-full p-2 border border-gray-300 rounded"
+            class="inpt1
+"
             type="text"
             name="shelf"
             placeholder="Prateleira"
             onChange={handleAddChange}
           />
           <input
-            class="w-full p-2 border border-gray-300 rounded"
+            class="inpt1
+"
             type="text"
             placeholder="Seção"
             name="section"
             onChange={handleAddChange}
           />
           <input
-            class="w-full p-2 border border-gray-300 rounded"
+            class="inpt1
+"
             type="text"
             name="quantity_item"
             placeholder="Quantidade do Item"
@@ -134,12 +137,14 @@ export default function Home() {
           </button>
         </form>
       </div>
-
-      <div class="w-full sm:w-1/2 p-4 bg-white rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold mb-4">Remover Item</h2>
-        <form onSubmit={handleRemoveSubmit} class="space-y-4">
+      <a href="table.html">
+        <button id="bt">Ver tabela</button>
+      </a>
+      <div class="rmv">
+        <h2 class="">Remover Item</h2>
+        <form onSubmit={handleRemoveSubmit} class="addcontent">
           <input
-            class="w-full p-2 border border-gray-300 rounded"
+            class="inpt2"
             type="text"
             placeholder="ID"
             name="id"

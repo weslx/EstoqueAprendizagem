@@ -8,7 +8,7 @@ function ProductPage() {
 
   useEffect(() => {
     if (id) {
-      fetch(`http://localhost:3000/api/find/busca`, {
+      fetch(`https://estoque-aprendizagem.vercel.app/api/find/busca`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

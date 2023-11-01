@@ -4,11 +4,17 @@ import { useRouter } from "next/router";
 function ProductPage() {
   const router = useRouter();
   const [id, setId] = useState("");
-  const [product, setProduct] = useState(null);
+  const [products_name, setProduct] = useState(null);
 
   useEffect(() => {
     if (id) {
-      fetch(`http://localhost:3000/api/find/${id}`)
+      fetch(`http://localhost:3000/api/find/busca`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(id),
+      })
         .then((res) => res.json())
         .then((data) => setProduct(data));
     }
@@ -24,50 +30,56 @@ function ProductPage() {
           type="text"
           className="border-2 border-gray-300 p-2 rounded-md w-full"
           placeholder="Digite o id do produto"
-          value={id}
-          onChange={(e) => setId(e.target.value)}
         />
         <button
           id="buscar"
           type="submit"
           className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
+          onClick={(e) => {
+            e.preventDefault();
+            const input = document.getElementById("pesquisa");
+            setId(input.value);
+          }}
         >
           Buscar
         </button>
-        {product && (
-          <div className="mt-4 bg-white p-4 rounded shadow">
-            <h1 className="text-xl font-bold mb-2">Detalhes do Produto:</h1>
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr>
-                  <th className="py-2 px-4 border">ID</th>
-                  <th className="py-2 px-4 border">Nome</th>
-                  <th className="py-2 px-4 border">Quantidade</th>
-                  <th className="py-2 px-4 border">Prateleira</th>
-                  <th className="py-2 px-4 border">Seção</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="py-2 px-4 border">{id}</td>
-                  <td className="py-2 px-4 border">
-                    {product.products_name.name}
-                  </td>
-                  <td className="py-2 px-4 border">{product.quantity_item}</td>
-                  <td className="py-2 px-4 border">
-                    {product.shelfs_sections.shelf}
-                  </td>
-                  <td className="py-2 px-4 border">
-                    {product.shelfs_sections.section}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        )}
+        {products_name &&
+          products_name.product &&
+          products_name.product.length > 0 && (
+            <div className="mt-4 bg-white p-4 rounded shadow">
+              <h1 className="text-xl font-bold mb-2">Detalhes do Produto:</h1>
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr>
+                    <th className="py-2 px-4 border">ID</th>
+                    <th className="py-2 px-4 border">Nome</th>
+                    <th className="py-2 px-4 border">Quantidade</th>
+                    <th className="py-2 px-4 border">Prateleira</th>
+                    <th className="py-2 px-4 border">Seção</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products_name.product.map((product) => (
+                    <tr key={product.id}>
+                      <td className="py-2 px-4 border">{product.id}</td>
+                      <td className="py-2 px-4 border">{products_name.name}</td>
+                      <td className="py-2 px-4 border">
+                        {product.quantity_item}
+                      </td>
+                      <td className="py-2 px-4 border">
+                        {product.shelfs_sections.shelf}
+                      </td>
+                      <td className="py-2 px-4 border">
+                        {product.shelfs_sections.section}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
       </div>
     </div>
   );
 }
-
 export default ProductPage;

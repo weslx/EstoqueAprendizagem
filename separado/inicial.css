@@ -3,7 +3,7 @@ body {
 }
 .sttitle {
   text-align: center;
-  margin-top: 5%;
+  margin-top: 100px;
   font-family: "Bree Serif", serif;
   color: #df7c35;
   font-size: 59px;
@@ -22,7 +22,7 @@ body {
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 5%;
+  margin-top: 50px;
   gap: 40%;
 }
 .stb1,
@@ -32,7 +32,7 @@ body {
   border-radius: 5px;
   padding: 10px;
   height: 150px;
-  width: 500px;
+  width: 25%;
   padding: 10px;
   font-family: "Bree Serif", serif;
   color: #a0e4ee;
@@ -48,6 +48,18 @@ body {
   box-shadow: 3px 5px 5px #656a7f;
 }
 .stb1 {
-  margin-bottom: 5%;
-  margin-top: 3%;
+  margin-bottom: 50px;
+  margin-top: 30px;
+}
+
+@media only screen and (max-width: 570px) {
+  .stb1,
+  .stb2 {
+    width: 30%;
+    height: 200px;
+    padding: 20px;
+  }
+  .stb1 {
+    margin-top: 40px;
+  }
 }

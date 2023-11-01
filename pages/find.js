@@ -21,15 +21,20 @@ function ProductPage() {
   }, [id]);
   console.log(products_name);
   return (
-    <div className="">
-      <h1 id="text">Tabela</h1>
+    <div className="min-h-screen bg-gray-100">
+      <header className="bg-blue-500 text-white p-4">Estoque</header>
+      <h1 className="text-center text-3xl font-bold my-4">Tabela</h1>
       <div className="container mx-auto p-4">
-        <input id="pesquisa" type="text" placeholder="Pesquisa..." />
+        <input
+          id="pesquisa"
+          type="text"
+          className="border-2 border-gray-300 p-2 rounded-md w-full"
+          placeholder="Digite o id do produto"
+        />
         <button
           id="buscar"
           type="submit"
-          style={{ backgroundColor: "#0a4750" }}
-          className="text-white font-bold py-2 px-8 rounded mt-4"
+          className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
           onClick={(e) => {
             e.preventDefault();
             const input = document.getElementById("pesquisa");

@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Link from "next/link";
 
 export default function Home() {
   const [name, setname] = useState("");
@@ -141,10 +140,9 @@ export default function Home() {
           </button>
         </form>
       </div>
-      <Link href="/find">
+      <a href="table.html">
         <button id="bt">Ver tabela</button>
-      </Link>
-      ;
+      </a>
       <div class="rmv">
         <h2 class="">Remover Item</h2>
         <form onSubmit={handleRemoveSubmit} class="addcontent">

@@ -17,6 +17,7 @@ export default async function handle(req, res) {
         },
       },
     });
+
     res.json(product);
   } catch (error) {
     res.status(500).json({ error });

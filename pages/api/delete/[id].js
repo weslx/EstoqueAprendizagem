@@ -7,16 +7,11 @@ export default async function handle(req, res) {
 
   try {
     // Primeiro, encontre o produto que você deseja excluir
-    const product = await prisma.product.findUnique({
+    const product = await prisma.products.findUnique({
       where: { id: Number(id) },
       include: {
-        box: true,
-        productsName: true,
-        stock: {
-          include: {
-            shelfsSections: true,
-          },
-        },
+        products_name: true,
+        shelfs_sections: true,
       },
     });
 
@@ -25,34 +20,23 @@ export default async function handle(req, res) {
     }
 
     // Em seguida, exclua todas as informações relacionadas ao produto
-    await prisma.stock.deleteMany({
-      where: { productsId: Number(id) },
-    });
-
-    await prisma.remove.deleteMany({
-      where: { productsId: Number(id) },
-    });
 
     // Agora, exclua o produto do banco de dados
-    const deletedProduct = await prisma.product.delete({
+    const deletedProduct = await prisma.products.delete({
       where: { id: Number(id) },
     });
 
     // Exclua também as informações relacionadas em Box e ProductsName
-    await prisma.box.delete({
-      where: { id: product.box.id },
+
+    await prisma.products_name.delete({
+      where: { id: product.products_name_id },
     });
 
-    await prisma.productsName.delete({
-      where: { id: product.productsName.id },
+    await prisma.shelfs_sections.delete({
+      where: {
+        id: product.shelfs_sections_id,
+      },
     });
-
-    // Exclua todas as ShelfsSections relacionadas ao produto
-    for (let stock of product.stock) {
-      await prisma.shelfsSections.delete({
-        where: { id: stock.shelfsSections.id },
-      });
-    }
 
     // Retorne o produto excluído como resposta
     res.json(deletedProduct);

@@ -1,31 +1,32 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Home() {
   const [name, setname] = useState("");
-  const [nameId, setNameId] = useState("");
-  const [id, setId] = useState("");
-  const [shelf, setShelf] = useState("");
+  const [shelf, setShelfs] = useState([]);
+  const [barcode, setbarcode] = useState(0); // Inicializado como um número
   const [section, setSection] = useState("");
-  const [quantityItem, setQuantityItem] = useState("");
+  const [quantity_item, setQuantityItem] = useState(0);
   const [removeId, setRemoveId] = useState("");
+  console.log("render");
 
   const handleAddChange = (e) => {
     switch (e.target.name) {
       case "name":
         setname(e.target.value);
         break;
-      case "id":
-        setId(e.target.value);
+      case "barcode":
+        setbarcode(parseInt(e.target.value)); // Convertendo o valor para um número inteiro
         break;
       case "shelf":
-        setShelf(e.target.value);
+        setShelfs(e.target.value);
         break;
       case "section":
         setSection(e.target.value);
         break;
-      case "quantityItem":
-        setQuantityItem(e.target.value);
+      case "quantity_item":
+        setQuantityItem(parseInt(e.target.value));
         break;
     }
   };
@@ -45,12 +46,11 @@ export default function Home() {
     e.preventDefault();
 
     const item = {
-      datetime: new Date().toISOString(),
       name,
-      id,
-      shelf,
+      barcode,
       section,
-      quantityItem,
+      shelf,
+      quantity_item,
     };
 
     console.log(item);
@@ -75,7 +75,7 @@ export default function Home() {
     e.preventDefault();
 
     const response = await fetch(
-      `https://estoque-aprendizagem.vercel.app/api/delete/${removeId}`,
+      `http://localhost:3000/api/delete/${removeId}`,
       {
         method: "DELETE",
       }
@@ -88,64 +88,75 @@ export default function Home() {
 
   return (
     <div class="content">
-      <title>Adicionar e remover</title>
       <div class="add">
-        <h2>Adicionar Item</h2>
-        <div class="addcontent">
-          <div class="inputs">
-            <form onSubmit={handleAddSubmit}>
-              <input
-                class="inpt1"
-                type="text"
-                placeholder="Nome"
-                name="name"
-                onChange={handleAddChange}
-              />
-              <input
-                class="inpt1"
-                type="text"
-                placeholder="Prateleira"
-                name="shelf"
-                onChange={handleAddChange}
-              />
-              <input
-                class="inpt1"
-                type="text"
-                placeholder="Seção"
-                name="section"
-                onChange={handleAddChange}
-              />
-              <input
-                class="inpt1"
-                type="text"
-                name="quantityItem"
-                placeholder="Quantidade do Item"
-                onChange={handleAddChange}
-              />
-              <button id="bt1">Adicionar</button>
-            </form>
-          </div>
-        </div>
+        <h2 class="">Adicionar Item</h2>
+        <form onSubmit={handleAddSubmit} class="addcontent">
+          <input
+            class="inpt1"
+            type="text"
+            placeholder="Nome"
+            name="name"
+            onChange={handleAddChange}
+          />
+          <input
+            class="inpt1"
+            type="text"
+            name="barcode"
+            placeholder="Codigo de barras"
+            onChange={handleAddChange}
+          />
+          <input
+            class="inpt1
+"
+            type="text"
+            name="shelf"
+            placeholder="Prateleira"
+            onChange={handleAddChange}
+          />
+          <input
+            class="inpt1
+"
+            type="text"
+            placeholder="Seção"
+            name="section"
+            onChange={handleAddChange}
+          />
+          <input
+            class="inpt1
+"
+            type="text"
+            name="quantity_item"
+            placeholder="Quantidade do Item"
+            onChange={handleAddChange}
+          />
+          <button
+            id="bt1"
+            class="w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            Adicionar
+          </button>
+        </form>
       </div>
       <a href="table.html">
         <button id="bt">Ver tabela</button>
       </a>
       <div class="rmv">
-        <h2>Remover Item</h2>
-        <div class="addcontent">
-          <div class="inputs">
-            <form onSubmit={handleRemoveSubmit}>
-              <input
-                class="inpt2"
-                type="text"
-                placeholder="ID"
-                name="id"
-                onChange={handleRemoveChange}
-              />
-              <button id="bt2">Remover</button>
-            </form>
-          </div>
-        </div>
+        <h2 class="">Remover Item</h2>
+        <form onSubmit={handleRemoveSubmit} class="addcontent">
+          <input
+            class="inpt2"
+            type="text"
+            placeholder="ID"
+            name="id"
+            onChange={handleRemoveChange}
+          />
+          <button
+            id="bt2"
+            class="w-full py-2 px-4 bg-red-500 text-white rounded hover:bg-red-600"
+          >
+            Remover
+          </button>
+        </form>
       </div>
     </div>
   );

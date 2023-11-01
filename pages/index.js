@@ -6,18 +6,13 @@ const Index = () => (
     <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@600&family=Inspiration&family=Kanit:wght@500&display=swap" rel="stylesheet"></link>
     <title>Homepage</title>
     <h1 class='sttitle'>Página Inicial</h1>
-    <p class="stsub">Sera necessario fazer login</p>
+    <p class="stsub">Será necessário fazer login</p>
     <p class="stp">
-    <Link href="/home">
-    <button class='stb1'>
+    <Link href="/home" className="stb1">
         Ir para o menu de adicionar/remover item
-        <img src="adcrmv.png"></img>
-      </button>
     </Link>
-    <Link href="/find">
-      <button class='stb2'>
+    <Link href="/find" class="stb2">
         Ir para o menu de ver estoque
-      </button>
     </Link>
     </p>
   </div>

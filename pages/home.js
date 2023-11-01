@@ -55,13 +55,16 @@ export default function Home() {
 
     console.log(item);
 
-    const response = await fetch("http://localhost:3000/api/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(item),
-    });
+    const response = await fetch(
+      "https://estoque-aprendizagem.vercel.app//api/add",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(item),
+      }
+    );
 
     if (!response.ok) {
       console.error("Erro ao adicionar item", response);
@@ -75,7 +78,7 @@ export default function Home() {
     e.preventDefault();
 
     const response = await fetch(
-      `http://localhost:3000/api/delete/${removeId}`,
+      `https://estoque-aprendizagem.vercel.app//api/delete/${removeId}`,
       {
         method: "DELETE",
       }

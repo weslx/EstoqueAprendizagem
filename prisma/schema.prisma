@@ -3,36 +3,29 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
-}
-
-model code_bar {
-  id       Int        @id @default(autoincrement())
-  code     String
-  products products[]
+  provider  = "mysql"
+  url       = env("DATABASE_URL")
 }
 
 model products {
   id                 Int             @id @default(autoincrement())
   products_name_id   Int
-  quantity_item      Int
   shelfs_sections_id Int
-  code_bar_id        Int
-  code_bar           code_bar        @relation(fields: [code_bar_id], references: [id])
+  quantity_item      Int
   products_name      products_name   @relation(fields: [products_name_id], references: [id])
   shelfs_sections    shelfs_sections @relation(fields: [shelfs_sections_id], references: [id])
 }
 
 model products_name {
-  id       Int        @id @default(autoincrement())
-  name     String
-  products products[]
+  id      Int        @id @default(autoincrement())
+  name    String     @db.VarChar(64)
+  barcode Int
+  product products[]
 }
 
 model shelfs_sections {
-  id       Int        @id @default(autoincrement())
-  shelf    String
-  sections Int
-  products products[]
+  id      Int        @id @default(autoincrement())
+  shelf   String     @db.VarChar(1)
+  section Int
+  product products[]
 }

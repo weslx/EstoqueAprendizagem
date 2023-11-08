@@ -1,9 +1,9 @@
 import React from "react";
 import { render, fireEvent, waitFor } from "@testing-library/react";
-import Home from "../home"; // Certifique-se de ajustar o caminho para o arquivo home.js
+import Home from "/home.js"; // Certifique-se de ajustar o caminho para o arquivo home.js
 
 test('renders the "Adicionar Item" section', () => {
-  const { getByText, getByPlaceholderText } = render(<Home />);
+  const { getByText, getByPlaceholderText } = render(<Home.js />);
 
   expect(getByText("Adicionar Item")).toBeInTheDocument();
   expect(getByPlaceholderText("Nome")).toBeInTheDocument();
@@ -13,7 +13,7 @@ test('renders the "Adicionar Item" section', () => {
 });
 
 test("submits the form for adding an item", async () => {
-  const { getByPlaceholderText, getByText } = render(<Home />);
+  const { getByPlaceholderText, getByText } = render(<Home.js />);
 
   const nameInput = getByPlaceholderText("Nome");
   const shelfInput = getByPlaceholderText("Prateleira");

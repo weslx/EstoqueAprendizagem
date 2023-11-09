@@ -3,22 +3,24 @@ import { useRouter } from "next/router";
 
 function ProductPage() {
   const router = useRouter();
-  const [id, setId] = useState("");
+  const [name, setId] = useState("");
   const [products_name, setProduct] = useState(null);
 
   useEffect(() => {
-    if (id) {
-      fetch(`https://estoque-aprendizagem.vercel.app/api/find/busca`, {
+    if (name) {
+      const namereq = { name: name };
+      fetch(`http://localhost:3000/api/find/busca`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(id),
+        body: JSON.stringify(namereq),
       })
         .then((res) => res.json())
+        .then((error) => console.log(error))
         .then((data) => setProduct(data));
     }
-  }, [id]);
+  }, [name]);
   console.log(products_name);
   return (
     <div className="min-h-screen bg-gray-100">
@@ -29,7 +31,7 @@ function ProductPage() {
           id="pesquisa"
           type="text"
           className="border-2 border-gray-300 p-2 rounded-md w-full"
-          placeholder="Digite o id do produto"
+          placeholder="Digite o nome do produto"
         />
         <button
           id="buscar"

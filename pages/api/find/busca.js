@@ -8,7 +8,9 @@ export default async function handle(req, res) {
   try {
     // Encontre o produto que você deseja obter
     const product = await prisma.products_name.findMany({
-      where: { name: name },
+      where: {
+        name: name,
+      },
       include: {
         product: {
           include: {

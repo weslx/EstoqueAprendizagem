@@ -68,6 +68,7 @@ export default function Home() {
     } else {
       const data = await response.json();
       console.log(data);
+      alert("O item foi adicionado com id" + " " + data.id);
     }
   };
 
@@ -140,6 +141,7 @@ export default function Home() {
       <a href="table.html">
         <button id="bt">Ver tabela</button>
       </a>
+
       <div class="rmv">
         <h2 class="">Remover Item</h2>
         <form onSubmit={handleRemoveSubmit} class="addcontent">

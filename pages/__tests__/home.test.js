@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, waitFor } from "@testing-library/react";
-import Home from "./home";
+import Home from "/home.js"; // Certifique-se de ajustar o caminho para o arquivo home.js
 
 test('renders the "Adicionar Item" section', () => {
   const { getByText, getByPlaceholderText } = render(<Home.js />);

@@ -6,17 +6,19 @@
     <title>Storage</title>
     <link rel="stylesheet" href="storage.css">
     <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@600&family=Inspiration&family=Kanit:wght@500&display=swap" rel="stylesheet">
+    <script src="storage.js"></script>
 </head>
+<body>
 <div class="content">
 <div class="add">
     <h2>Adicionar Item</h2>
     <div class="addcontent">
       <div class="inputs">
-          <input class="inpt1" type="text"placeholder="Nome" name="name"/>
-          <input class="inpt1"type="text" placeholder="Prateleira" name="shelf"/>
-          <input class="inpt1" type="text" placeholder="Seção" name="section"/>
-          <input class="inpt1" type="text" name="quantityItem" placeholder="Quantidade do Item"/>
-          <button id="bt1">Adicionar</button>
+          <input class="inpt1" type="text"placeholder="Nome" name="name" id="input1"/>
+          <input class="inpt1"type="text" placeholder="Prateleira" name="shelf" id="input2"/>
+          <input class="inpt1" type="text" placeholder="Seção" name="section" id="input3"/>
+          <input class="inpt1" type="text" name="quantityItem" placeholder="Quantidade do Item" id="input4"/>
+          <button id="bt1" onclick="del1()">Adicionar</button>
       </div>
     </div>
 </div>
@@ -27,10 +29,11 @@
     <h2>Remover Item</h2>
     <div class="addcontent">
       <div class="inputs">
-          <input class="inpt2" type="text" placeholder="ID" name="id"/>
-          <button id="bt2">Remover</button>
+          <input class="inpt2" type="text" placeholder="ID" name="id" id="input5"/>
+          <button id="bt2" onclick="del2()">Remover</button>
         </form>
       </div>
     </div>
   </div>
 </div>
+</body>

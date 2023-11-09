@@ -9,7 +9,7 @@ function ProductPage() {
   useEffect(() => {
     if (name) {
       const namereq = { name: name };
-      fetch(`/api/find/busca`, {
+      fetch("/api/find/busca", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

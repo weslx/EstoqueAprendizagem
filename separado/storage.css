@@ -39,15 +39,21 @@ body {
   text-align: center;
   justify-content: center;
 }
-.addcontent {
+.addcontent,
+.rmvcontent {
   display: flex;
   flex-direction: column;
   border-radius: 50px;
-  background-color: #80bfc9;
   width: 80%;
   height: 500px;
   align-self: center;
   margin-top: 30px;
+}
+.rmvcontent {
+  background-color: #80bfc9;
+}
+.addcontent {
+  background-color: #80bfc9;
 }
 .inputs {
   margin-top: 30px;
@@ -121,7 +127,22 @@ h2 {
     margin-bottom: 20px;
   }
   #bt {
-    margin-top: 20px;
-    margin-bottom: 40px;
+    margin-top: 80px;
+    margin-bottom: 100px;
+  }
+  .add {
+    margin-top: 30px;
+    background-color: #d4d2d2;
+  }
+  .rmv {
+    margin-bottom: 70px;
+    background-color: #d4d2d2;
+  }
+  .addcontent,
+  .rmvcontent {
+    border: solid 7px #167685;
+  }
+  h2 {
+    color: #167685;
   }
 }

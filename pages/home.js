@@ -55,7 +55,7 @@ export default function Home() {
 
     console.log(item);
 
-    const response = await fetch("http://localhost:3000/api/add", {
+    const response = await fetch("/api/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,12 +75,9 @@ export default function Home() {
   async function handleRemoveSubmit(e) {
     e.preventDefault();
 
-    const response = await fetch(
-      `http://localhost:3000/api/delete/${removeId}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`/api/delete/${removeId}`, {
+      method: "DELETE",
+    });
 
     const data = await response.json();
 

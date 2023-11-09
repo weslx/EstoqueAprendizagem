@@ -56,17 +56,7 @@ h2 {
   font-size: 30px;
   color: #f0f8ff;
 }
-#bt1 {
-  color: white;
-  width: 40%;
-  height: 70px;
-  border-radius: 30px;
-  border: none;
-  background-color: #df7c35;
-  font-size: 120%;
-  cursor: pointer;
-  transition: 0.3s;
-}
+#bt1,
 #bt2 {
   color: white;
   width: 40%;
@@ -81,6 +71,9 @@ h2 {
 .footer {
   height: 40px;
 }
+#bt1 {
+  margin-top: 30px;
+}
 #bt1:hover {
   transition-duration: 0.3s;
   background-color: #f38c43;
@@ -89,7 +82,7 @@ h2 {
 .inpt1,
 .inpt2 {
   width: 70%;
-  height: 40px;
+  height: 50px;
   border-radius: 40px;
   border: none;
   margin-bottom: 35px;

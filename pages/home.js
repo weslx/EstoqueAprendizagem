@@ -56,7 +56,7 @@ export default function Home() {
 
     console.log(item);
 
-    const response = await fetch("http://localhost:3000/api/add", {
+    const response = await fetch("/api/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -69,18 +69,16 @@ export default function Home() {
     } else {
       const data = await response.json();
       console.log(data);
+      alert("O item foi adicionado com id" + " " + data.id);
     }
   };
 
   async function handleRemoveSubmit(e) {
     e.preventDefault();
 
-    const response = await fetch(
-      `http://localhost:3000/api/delete/${removeId}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`/api/delete/${removeId}`, {
+      method: "DELETE",
+    });
 
     const data = await response.json();
 

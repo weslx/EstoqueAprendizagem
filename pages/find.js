@@ -9,7 +9,7 @@ function ProductPage() {
   useEffect(() => {
     if (name) {
       const namereq = { name: name };
-      fetch(`http://localhost:3000/api/find/busca`, {
+      fetch(`/api/find/busca`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -17,7 +17,6 @@ function ProductPage() {
         body: JSON.stringify(namereq),
       })
         .then((res) => res.json())
-        .then((error) => console.log(error))
         .then((data) => setProduct(data));
     }
   }, [name]);
@@ -45,7 +44,7 @@ function ProductPage() {
         >
           Buscar
         </button>
-        {products_name && products_name.length > 0 && (
+        {products_name && products_name.length >= 0 && (
           <div className="mt-4 bg-white p-4 rounded shadow">
             <h1 className="text-xl font-bold mb-2">Detalhes do Produto:</h1>
             <p>Em desenvolvimento, atualmente mostra todos os resultados </p>

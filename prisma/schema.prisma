@@ -20,15 +20,15 @@ model products {
 }
 
 model products_name {
-  id      Int        @id @default(autoincrement())
-  name    String?    @db.VarChar(64)
-  barcode Int?
-  product products[]
+  id       Int        @id @default(autoincrement())
+  name     String?    @db.VarChar(64)
+  barcode  Int?
+  products products[]
 }
 
 model shelfs_sections {
-  id      Int        @id @default(autoincrement())
-  shelf   String?    @db.VarChar(1)
-  section Int?
-  product products[]
+  id       Int        @id @default(autoincrement())
+  shelf    String?    @db.VarChar(1)
+  section  Int?
+  products products[]
 }

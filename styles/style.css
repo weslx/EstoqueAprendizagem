@@ -13,7 +13,7 @@ body {
   flex-wrap: wrap;
   flex-direction: row;
   gap: 10%;
-  margin-top: 5%;
+  margin-top: 7%;
 }
 .add {
   display: flex;
@@ -24,7 +24,6 @@ body {
   border-radius: 50px;
   background-color: #167685;
   color: white;
-  font-family: "Bree Serif", serif;
   text-align: center;
   justify-content: center;
 }
@@ -37,22 +36,25 @@ body {
   border-radius: 50px;
   background-color: #167685;
   color: white;
-  font-family: "Bree Serif", serif;
   text-align: center;
   justify-content: center;
 }
-
-.addcontent {
+.addcontent,
+.rmvcontent {
   display: flex;
   flex-direction: column;
   border-radius: 50px;
-  background-color: #80bfc9;
   width: 80%;
   height: 500px;
   align-self: center;
   margin-top: 30px;
 }
-
+.rmvcontent {
+  background-color: #80bfc9;
+}
+.addcontent {
+  background-color: #80bfc9;
+}
 .inputs {
   margin-top: 30px;
 }
@@ -79,8 +81,9 @@ h2 {
   margin-top: 30px;
 }
 #bt1:hover {
-  box-shadow: 3px 10px 5px #656a7f;
   transition-duration: 0.3s;
+  background-color: #f38c43;
+  box-shadow: 3px 5px 5px #656a7f;
 }
 .inpt1,
 .inpt2 {
@@ -91,15 +94,14 @@ h2 {
   margin-bottom: 35px;
   padding-left: 30px;
 }
-
 .inpt2 {
   margin-top: 140px;
   margin-bottom: 40px;
 }
-
 #bt2:hover {
-  box-shadow: 3px 10px 5px #656a7f;
   transition-duration: 0.3s;
+  background-color: #f38c43;
+  box-shadow: 3px 5px 5px #656a7f;
 }
 #bt {
   color: white;
@@ -111,25 +113,12 @@ h2 {
   font-size: 120%;
   cursor: pointer;
   transition: ease-in-out 0.3s;
+  border: solid 0px;
 }
 #bt:hover {
-  box-shadow: 3px 10px 5px #656a7f;
+  box-shadow: 3px 5px 5px #656a7f;
   transition-duration: 0.3s;
-}
-header {
-  color: white;
-  display: flex;
-  width: 100%;
-  height: 100px;
-  background-color: #6875aa;
-  margin-top: -9px;
-  padding-right: 17px;
-  margin-left: -9px;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  font-size: 50px;
-  font-family: "Bree Serif", serif;
+  background-color: #f38c43;
 }
 @media only screen and (max-width: 570px) {
   .add,
@@ -138,7 +127,54 @@ header {
     margin-bottom: 20px;
   }
   #bt {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 80px;
+    margin-bottom: 100px;
+  }
+  .add {
+    margin-top: 30px;
+    background-color: #d4d2d2;
+  }
+  .rmv {
+    margin-bottom: 70px;
+    background-color: #d4d2d2;
+  }
+  .addcontent,
+  .rmvcontent {
+    border: solid 7px #167685;
+  }
+  h2 {
+    color: #167685;
   }
 }
+ 
+@media only screen and (min-height: 1000px) {
+  .add,
+  .rmv {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+  a {
+    margin-top: 80px;
+    margin-bottom: 100px;
+    margin-left: 41%;
+    margin-right: 42%;
+    width: 100%;
+  }
+  .add {
+    margin-top: 30px;
+    background-color: #d4d2d2;
+  }
+  .rmv {
+    margin-bottom: 70px;
+    background-color: #d4d2d2;
+  }
+  .addcontent,
+  .rmvcontent {
+    border: solid 7px #167685;
+  }
+  h2 {
+    color: #167685;
+    font-size: 40px;
+  }
+}
+ 

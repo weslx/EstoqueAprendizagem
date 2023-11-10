@@ -12,7 +12,7 @@ export default async function handle(req, res) {
         name: name,
       },
       include: {
-        product: {
+        products: {
           include: {
             shelfs_sections: true,
           },

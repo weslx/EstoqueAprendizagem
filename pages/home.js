@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Link from "next/link";
 
 export default function Home() {
   const [name, setname] = useState("");
@@ -55,7 +56,7 @@ export default function Home() {
 
     console.log(item);
 
-    const response = await fetch("http://localhost:3000/api/add", {
+    const response = await fetch("/api/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -68,18 +69,16 @@ export default function Home() {
     } else {
       const data = await response.json();
       console.log(data);
+      alert("O item foi adicionado com id" + " " + data.id);
     }
   };
 
   async function handleRemoveSubmit(e) {
     e.preventDefault();
 
-    const response = await fetch(
-      `http://localhost:3000/api/delete/${removeId}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`/api/delete/${removeId}`, {
+      method: "DELETE",
+    });
 
     const data = await response.json();
 
@@ -91,71 +90,75 @@ export default function Home() {
       <div class="add">
         <h2 class="">Adicionar Item</h2>
         <form onSubmit={handleAddSubmit} class="addcontent">
-          <input
-            class="inpt1"
-            type="text"
-            placeholder="Nome"
-            name="name"
-            onChange={handleAddChange}
-          />
-          <input
-            class="inpt1"
-            type="text"
-            name="barcode"
-            placeholder="Codigo de barras"
-            onChange={handleAddChange}
-          />
-          <input
-            class="inpt1
+          <div class="inputs">
+            <input
+              class="inpt1"
+              type="text"
+              placeholder="Nome"
+              name="name"
+              onChange={handleAddChange}
+            />
+            <input
+              class="inpt1"
+              type="text"
+              name="barcode"
+              placeholder="Codigo de barras"
+              onChange={handleAddChange}
+            />
+            <input
+              class="inpt1
 "
-            type="text"
-            name="shelf"
-            placeholder="Prateleira"
-            onChange={handleAddChange}
-          />
-          <input
-            class="inpt1
+              type="text"
+              name="shelf"
+              placeholder="Prateleira"
+              onChange={handleAddChange}
+            />
+            <input
+              class="inpt1
 "
-            type="text"
-            placeholder="Seção"
-            name="section"
-            onChange={handleAddChange}
-          />
-          <input
-            class="inpt1
+              type="text"
+              placeholder="Seção"
+              name="section"
+              onChange={handleAddChange}
+            />
+            <input
+              class="inpt1
 "
-            type="text"
-            name="quantity_item"
-            placeholder="Quantidade do Item"
-            onChange={handleAddChange}
-          />
-          <button
-            id="bt1"
-            class="w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600"
-          >
-            Adicionar
-          </button>
+              type="text"
+              name="quantity_item"
+              placeholder="Quantidade do Item"
+              onChange={handleAddChange}
+            />
+            <button
+              id="bt1"
+              class="w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600"
+            >
+              Adicionar
+            </button>
+          </div>
         </form>
       </div>
-      <a href="table.html">
+      <Link href="/find">
         <button id="bt">Ver tabela</button>
-      </a>
+      </Link>
       <div class="rmv">
         <h2 class="">Remover Item</h2>
         <form onSubmit={handleRemoveSubmit} class="addcontent">
-          <input
-            class="inpt2"
-            type="text"
-            placeholder="ID"
-            name="id"
-            onChange={handleRemoveChange}
-          />
-          <button
-            id="bt2"
-            class="w-full py-2 px-4 bg-red-500 text-white rounded hover:bg-red-600"
-          >
-            Remover
-          </button>
+          <div>
+            <input
+              class="inpt2"
+              type="text"
+              placeholder="ID"
+              name="id"
+              onChange={handleRemoveChange}
+            />
+            <button
+              id="bt2"
+              class="w-full py-2 px-4 bg-red-500 text-white rounded hover:bg-red-600"
+            >
+              Remover
+            </button>
+          </div>
         </form>
       </div>
     </div>

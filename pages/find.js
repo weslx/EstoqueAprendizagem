@@ -9,7 +9,7 @@ function ProductPage() {
   useEffect(() => {
     if (name) {
       const namereq = { name: name };
-      fetch(`http://localhost:3000/api/find/busca`, {
+      fetch(`/api/find/busca`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -17,7 +17,6 @@ function ProductPage() {
         body: JSON.stringify(namereq),
       })
         .then((res) => res.json())
-        .then((error) => console.log(error))
         .then((data) => setProduct(data));
     }
   }, [name]);
@@ -45,14 +44,14 @@ function ProductPage() {
         >
           Buscar
         </button>
-        {products_name && products_name.length > 0 && (
+        {products_name && products_name.length >= 0 && (
           <div className="mt-4 bg-white p-4 rounded shadow">
             <h1 className="text-xl font-bold mb-2">Detalhes do Produto:</h1>
             <p>Em desenvolvimento, atualmente mostra todos os resultados </p>
             {products_name.map(
               (product_name) =>
-                product_name.product &&
-                product_name.product.length > 0 && (
+                product_name.products &&
+                product_name.products.length > 0 && (
                   <table
                     key={product_name.id}
                     className="w-full text-left border-collapse mb-4"
@@ -67,7 +66,7 @@ function ProductPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      {product_name.product.map((product) => (
+                      {product_name.products.map((product) => (
                         <tr key={product.id}>
                           <td className="py-2 px-4 border">{product.id}</td>
                           <td className="py-2 px-4 border">

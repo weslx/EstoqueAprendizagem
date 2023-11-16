@@ -79,6 +79,7 @@ function ProductPage() {
                           >
                             {product.quantity_item}
                           </td>
+
                           <td className="py-2 px-4 border">
                             {product.shelfs_sections.shelf}
                           </td>

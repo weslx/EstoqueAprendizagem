@@ -6,10 +6,16 @@ export default async function handle(req, res) {
   try {
     let { name, barcode, shelf, section, quantity_item } = req.body;
 
-    // Convertendo 'barcode' para um número inteiro
+    // Verificar se os valores não são nulos
+    if (!name || !barcode || !shelf || !section || !quantity_item) {
+      res.status(400).json({ error: "Todos os campos são obrigatórios" });
+      return;
+    }
+
     barcode = parseInt(barcode);
     quantity_item = parseInt(quantity_item);
     section = parseInt(section);
+
     const product = await prisma.products.create({
       data: {
         quantity_item,
@@ -25,6 +31,7 @@ export default async function handle(req, res) {
     res.json(product);
   } catch (error) {
     console.error(error);
+    res.status(500).json({ error: "Ocorreu um erro ao criar o produto" });
   } finally {
     await prisma.$disconnect();
   }

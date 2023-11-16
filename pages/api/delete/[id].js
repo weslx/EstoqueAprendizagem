@@ -6,7 +6,11 @@ export default async function handle(req, res) {
   const { id } = req.query; // ID do produto
 
   try {
-    // Primeiro, encontre o produto que você deseja excluir
+    if (isNaN(id)) {
+      res
+        .status(400)
+        .json({ error: "ID do produto obrigatoriamente precisa ser numero" });
+    }
     const product = await prisma.products.findUnique({
       where: { id: Number(id) },
       include: {

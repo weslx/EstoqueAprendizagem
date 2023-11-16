@@ -1,16 +1,15 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 
 export default function Home() {
   const [name, setname] = useState("");
   const [shelf, setShelfs] = useState([]);
-  const [barcode, setbarcode] = useState(0);
+  const [barcode, setbarcode] = useState(0); // Inicializado como um número
   const [section, setSection] = useState("");
   const [quantity_item, setQuantityItem] = useState(0);
   const [removeId, setRemoveId] = useState("");
-  const [message, setMessage] = useState(""); // Novo estado para mensagens
   console.log("render");
 
   function handleKeyDown(event) {
@@ -40,7 +39,7 @@ export default function Home() {
         setname(e.target.value);
         break;
       case "barcode":
-        setbarcode(parseInt(e.target.value));
+        setbarcode(parseInt(e.target.value)); // Convertendo o valor para um número inteiro
         break;
       case "shelf":
         setShelfs(e.target.value);
@@ -78,30 +77,42 @@ export default function Home() {
 
     console.log(item);
 
-    try {
-      const response = await axios.post("/api/add", item);
-      const data = response.data;
-      setMessage(`O item foi adicionado com id ${data.id}`);
-    } catch (error) {
-      setMessage(`Erro ao adicionar item: ${error.response.data.error}`);
+    const response = await fetch("/api/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(item),
+    });
+
+    if (!response.ok) {
+      const data = await response.json();
+      alert(data.error);
+    } else {
+      const data = await response.json();
+      alert("O item foi adicionado com id" + " " + data.id);
     }
   };
 
   async function handleRemoveSubmit(e) {
     e.preventDefault();
 
-    try {
-      const response = await axios.delete(`/api/delete/${removeId}`);
-      const data = response.data;
-      setMessage("O item foi excluído com sucesso");
-    } catch (error) {
-      setMessage(`Erro ao remover item: ${error.response.data.error}`);
+    const response = await fetch(`/api/delete/${removeId}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      const data = await response.json();
+      alert(data.error);
+    } else {
+      const data = await response.json();
+      console.log(data);
+      alert("O item foi excluido com sucesso");
     }
   }
 
   return (
-    <div className="content">
-      {message && <div className="message">Em teste:( {message})</div>}
+    <div class="content">
       <div class="add">
         <h2 class="">Adicionar Item</h2>
         <form onSubmit={handleAddSubmit} class="addcontent">

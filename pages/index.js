@@ -8,7 +8,7 @@ const Index = () => (
       href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@600&family=Inspiration&family=Kanit:wght@500&display=swap"
       rel="stylesheet"
     />
-    <h1 className={styles.sttitle}>Página Inicial</h1>
+    <h1 className={styles.sttitle}>Bem Na Eskina</h1>
     <p className={styles.stsub}>Será necessário fazer login</p>
     <p className={styles.stp}>
       <Link href="/home" className={styles.stb1}>

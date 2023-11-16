@@ -42,3 +42,20 @@ h1{
     font-family: "Bree Serif", serif;
     background-color: #80BFC9;
 }
+
+#buscar {
+    width: 100%;
+    background-color: #80bfc9;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  #buscar:hover {
+    background-color: #167685; /* Altere a cor desejada para o estado de hover */
+  }
+  
+  

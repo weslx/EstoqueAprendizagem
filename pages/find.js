@@ -22,10 +22,12 @@ function ProductPage() {
   }, [name]);
   console.log(products_name);
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-blue-500 text-white p-4">Estoque</header>
-      <h1 className="text-center text-3xl font-bold my-4">Tabela</h1>
-      <div className="container mx-auto p-4">
+    <div className="min-h-screen bg-gray-100 ">
+      <header className="text-center text-3xl font-bold  bg-[#167685] text-white p-4">
+        Estoque
+      </header>
+
+      <div className="container mx-auto p-4  mt-10">
         <input
           id="pesquisa"
           type="text"
@@ -35,7 +37,7 @@ function ProductPage() {
         <button
           id="buscar"
           type="submit"
-          className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
+          className="mx-auto block bg-[#167685] hover:bg-cyan-700 text-white font-bold py-2 px-20 rounded mt-6 "
           onClick={(e) => {
             e.preventDefault();
             const input = document.getElementById("pesquisa");
@@ -46,8 +48,6 @@ function ProductPage() {
         </button>
         {products_name && products_name.length >= 0 && (
           <div className="mt-4 bg-white p-4 rounded shadow">
-            <h1 className="text-xl font-bold mb-2">Detalhes do Produto:</h1>
-            <p>Em desenvolvimento, atualmente mostra todos os resultados </p>
             {products_name.map(
               (product_name) =>
                 product_name.products &&

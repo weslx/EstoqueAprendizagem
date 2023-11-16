@@ -4,6 +4,9 @@ body {
 * {
   font-family: "Eras ITC";
 }
+.linha {
+  display: none;
+}
 .content {
   display: flex;
   height: auto;
@@ -88,7 +91,7 @@ h2 {
 .inpt1,
 .inpt2 {
   width: 70%;
-  height: 50px;
+  height: 40px;
   border-radius: 40px;
   border: none;
   margin-bottom: 35px;
@@ -123,15 +126,15 @@ h2 {
 @media only screen and (max-width: 570px) {
   .add,
   .rmv {
-    width: 80%;
+    width: 90%;
     margin-bottom: 20px;
   }
   #bt {
     margin-top: 80px;
-    margin-bottom: 100px;
+    margin-bottom: 80px;
   }
   .add {
-    margin-top: 30px;
+    margin-top: 0px;
     background-color: #d4d2d2;
   }
   .rmv {
@@ -144,6 +147,12 @@ h2 {
   }
   h2 {
     color: #167685;
+  }
+  .linha {
+    display: flex;
+    background-color: #167685;
+    width: 80%;
+    height: 3px;
   }
 }
 

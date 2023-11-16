@@ -174,9 +174,11 @@ export default function Home() {
           </div>
         </form>
       </div>
+      <div class="linha"></div>
       <Link href="/find">
         <button id="bt">Ver tabela</button>
       </Link>
+      <div class="linha"></div>
       <div class="rmv">
         <h2 class="">Remover Item</h2>
         <form onSubmit={handleRemoveSubmit} class="addcontent">

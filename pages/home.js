@@ -12,6 +12,27 @@ export default function Home() {
   const [removeId, setRemoveId] = useState("");
   console.log("render");
 
+  function handleKeyDown(event) {
+    const key = event.key;
+    if (!/[a-zA-Z]/.test(key)) {
+      event.preventDefault();
+    }
+  }
+
+  function handleInput1(event) {
+    const inputValue = event.target.value;
+    const onlyNumbers = inputValue.replace(/[^0-9]/g, "");
+    const truncatedInput = onlyNumbers.slice(0, 18);
+    event.target.value = truncatedInput;
+  }
+
+  function handleInput(event) {
+    const inputValue = event.target.value;
+    const onlyNumbers = inputValue.replace(/[^0-9]/g, "");
+    const truncatedInput = onlyNumbers.slice(0, 3);
+    event.target.value = truncatedInput;
+  }
+
   const handleAddChange = (e) => {
     switch (e.target.name) {
       case "name":
@@ -65,10 +86,10 @@ export default function Home() {
     });
 
     if (!response.ok) {
-      console.error("Erro ao adicionar item", response);
+      const data = await response.json();
+      alert(data.error);
     } else {
       const data = await response.json();
-      console.log(data);
       alert("O item foi adicionado com id" + " " + data.id);
     }
   };
@@ -80,9 +101,14 @@ export default function Home() {
       method: "DELETE",
     });
 
-    const data = await response.json();
-
-    console.log(data);
+    if (!response.ok) {
+      const data = await response.json();
+      alert(data.error);
+    } else {
+      const data = await response.json();
+      console.log(data);
+      alert("O item foi excluido com sucesso");
+    }
   }
 
   return (
@@ -97,6 +123,8 @@ export default function Home() {
               placeholder="Nome"
               name="name"
               onChange={handleAddChange}
+              pattern="[A-Za-z]*"
+              onKeyDown={handleKeyDown}
             />
             <input
               class="inpt1"
@@ -104,15 +132,22 @@ export default function Home() {
               name="barcode"
               placeholder="Codigo de barras"
               onChange={handleAddChange}
+              onInput={handleInput1}
+              pattern="[0-9]*"
+              maxLength="18"
             />
+
             <input
-              class="inpt1
-"
+              class="inpt1"
               type="text"
               name="shelf"
               placeholder="Prateleira"
+              onKeyDown={handleKeyDown}
               onChange={handleAddChange}
+              pattern="[A-Za-z]*"
+              maxLength="1"
             />
+
             <input
               class="inpt1
 "
@@ -120,6 +155,9 @@ export default function Home() {
               placeholder="Seção"
               name="section"
               onChange={handleAddChange}
+              onInput={handleInput}
+              pattern="[0-9]{1,3}"
+              maxLength="3"
             />
             <input
               class="inpt1
@@ -128,6 +166,9 @@ export default function Home() {
               name="quantity_item"
               placeholder="Quantidade do Item"
               onChange={handleAddChange}
+              onInput={handleInput1}
+              pattern="[0-9]*"
+              maxLength="18"
             />
             <button
               id="bt1"
@@ -138,9 +179,11 @@ export default function Home() {
           </div>
         </form>
       </div>
+      <div class="linha"></div>
       <Link href="/find">
         <button id="bt">Ver tabela</button>
       </Link>
+      <div class="linha"></div>
       <div class="rmv">
         <h2 class="">Remover Item</h2>
         <form onSubmit={handleRemoveSubmit} class="addcontent">

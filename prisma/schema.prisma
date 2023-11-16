@@ -8,12 +8,12 @@ datasource db {
 }
 
 model products {
-  id                 Int              @id @default(autoincrement())
-  products_name_id   Int?
-  shelfs_sections_id Int?
-  quantity_item      Int?
-  products_name      products_name?   @relation(fields: [products_name_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_products_name_id")
-  shelfs_sections    shelfs_sections? @relation(fields: [shelfs_sections_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_shelfs_sections_id")
+  id                 Int             @id @default(autoincrement())
+  products_name_id   Int
+  shelfs_sections_id Int
+  quantity_item      Int
+  products_name      products_name   @relation(fields: [products_name_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_products_name_id")
+  shelfs_sections    shelfs_sections @relation(fields: [shelfs_sections_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_shelfs_sections_id")
 
   @@index([products_name_id], map: "fk_products_name_id")
   @@index([shelfs_sections_id], map: "fk_shelfs_sections_id")
@@ -21,14 +21,14 @@ model products {
 
 model products_name {
   id       Int        @id @default(autoincrement())
-  name     String?    @db.VarChar(64)
-  barcode  Int?
+  name     String     @db.VarChar(64)
+  barcode  Int
   products products[]
 }
 
 model shelfs_sections {
   id       Int        @id @default(autoincrement())
-  shelf    String?    @db.VarChar(1)
-  section  Int?
+  shelf    String     @db.VarChar(1)
+  section  Int
   products products[]
 }

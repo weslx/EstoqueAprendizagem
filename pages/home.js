@@ -86,10 +86,10 @@ export default function Home() {
     });
 
     if (!response.ok) {
-      console.error("Erro ao adicionar item", response);
+      const data = await response.json();
+      alert(data.error);
     } else {
       const data = await response.json();
-      console.log(data);
       alert("O item foi adicionado com id" + " " + data.id);
     }
   };
@@ -101,9 +101,13 @@ export default function Home() {
       method: "DELETE",
     });
 
-    const data = await response.json();
-
-    console.log(data);
+    if (!response.ok) {
+      const data = await response.json();
+      alert(data.error);
+    } else {
+      const data = await response.json();
+      alert("O item foi adicionado com id" + " " + data.id);
+    }
   }
 
   return (
@@ -174,9 +178,11 @@ export default function Home() {
           </div>
         </form>
       </div>
+      <div class="linha"></div>
       <Link href="/find">
         <button id="bt">Ver tabela</button>
       </Link>
+      <div class="linha"></div>
       <div class="rmv">
         <h2 class="">Remover Item</h2>
         <form onSubmit={handleRemoveSubmit} class="addcontent">

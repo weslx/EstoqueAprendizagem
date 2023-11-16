@@ -22,7 +22,7 @@ export default async function handle(req, res) {
 
     res.json(product);
   } catch (error) {
-    res.status(500).json({ error });
+    res.status(500).json({ error: "Nao foi possivel encontrar o produto" });
   } finally {
     await prisma.$disconnect();
   }

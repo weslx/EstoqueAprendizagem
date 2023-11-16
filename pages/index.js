@@ -11,12 +11,12 @@ const Index = () => (
     <h1 className={styles.sttitle}>Página Inicial</h1>
     <p className={styles.stsub}>Será necessário fazer login</p>
     <p className={styles.stp}>
-      <a href="/home" className={styles.stb1}>
+      <Link href="/home" className={styles.stb1}>
         Ir para o menu de adicionar/remover item
-      </a>
-      <a href="/find" className={styles.stb2}>
+      </Link>
+      <Link href="/find" className={styles.stb2}>
         Ir para o menu de estoque
-      </a>
+      </Link>
     </p>
   </div>
 );

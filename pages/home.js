@@ -106,7 +106,8 @@ export default function Home() {
       alert(data.error);
     } else {
       const data = await response.json();
-      alert("O item foi adicionado com id" + " " + data.id);
+      console.log(data);
+      alert("O item foi excluido com sucesso");
     }
   }
 

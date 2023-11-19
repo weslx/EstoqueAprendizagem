@@ -6,7 +6,7 @@ import styles from "../styles/inicial.module.css";
 const Index = () => (
   <div className={styles.bodyContainer}>
     <div className={styles.card}>
-      <h1 className={styles.sttitle}>Bem Na Eskina</h1>
+      <h1 className={styles.sttitle}>Bem na Eskina</h1>
       <p className={styles.stsub}>Será necessário fazer login</p>
       <p className={styles.stp}>
         <Link href="/home" className={styles.stb1}>

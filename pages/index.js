@@ -8,14 +8,14 @@ const Index = () => (
       href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@600&family=Inspiration&family=Kanit:wght@500&display=swap"
       rel="stylesheet"
     />
-    <h1 className={styles.sttitle}>Bem Na Eskina</h1>
+    <h1 className={styles.sttitle}>Bem na Eskina</h1>
     <p className={styles.stsub}>Será necessário fazer login</p>
     <p className={styles.stp}>
       <Link href="/home" className={styles.stb1}>
-        Ir para o menu de adicionar/remover item
+        Adicionar e remover item
       </Link>
       <Link href="/find" className={styles.stb2}>
-        Ir para o menu de estoque
+        Menu de estoque
       </Link>
     </p>
   </div>

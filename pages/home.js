@@ -83,11 +83,14 @@ export default function Home() {
       const response = await axios.post("/api/add", item);
       const data = response.data;
       setMessage(`O item foi adicionado com id ${data.id}`);
+
+      setTimeout(() => {
+        setMessage("");
+      }, 5000);
     } catch (error) {
       setMessage(`Erro ao adicionar item: ${error.response.data.error}`);
     }
   };
-
   async function handleRemoveSubmit(e) {
     e.preventDefault();
 
@@ -102,11 +105,7 @@ export default function Home() {
 
   return (
     <div className="content">
-      {message && (
-        <div className="message">
-          Em teste:( {message})<button className="idbt">Ok</button>
-        </div>
-      )}
+      {message && <div className="message">{message}</div>}
       <div class="add">
         <h2 class="">Adicionar Item</h2>
         <form onSubmit={handleAddSubmit} class="addcontent">

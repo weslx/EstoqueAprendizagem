@@ -194,7 +194,7 @@ h2 {
   color: #167685;
   background-color: rgb(238, 238, 238);
   border: 2px solid #167685;
-  width: 300px;
+  width: 350px;
   padding: 10px;
   text-align: center;
   position: fixed;
@@ -202,6 +202,10 @@ h2 {
   left: 50%;
   transform: translateX(-50%);
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
 }
 
 .idbt {
@@ -210,4 +214,5 @@ h2 {
   width: 45px;
   margin-top: 1vh;
   border-radius: 7px;
+  font-size: 15px;
 }

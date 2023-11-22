@@ -102,7 +102,11 @@ export default function Home() {
 
   return (
     <div className="content">
-      {message && <div className="message">Em teste:( {message})</div>}
+      {message && (
+        <div className="message">
+          Em teste:( {message})<button className="idbt">Ok</button>
+        </div>
+      )}
       <div class="add">
         <h2 class="">Adicionar Item</h2>
         <form onSubmit={handleAddSubmit} class="addcontent">

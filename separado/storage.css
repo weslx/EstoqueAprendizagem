@@ -189,3 +189,25 @@ h2 {
     font-size: 40px;
   }
 }
+
+.message {
+  color: #167685;
+  background-color: rgb(238, 238, 238);
+  border: 2px solid #167685;
+  width: 300px;
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+}
+
+.idbt {
+  background-color: #167685;
+  color: white;
+  width: 45px;
+  margin-top: 1vh;
+  border-radius: 7px;
+}

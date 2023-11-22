@@ -1,66 +1,168 @@
+.bodyContainer {
+  background-image: url("../separado/img/estoque_fundo.jpg");
+  overflow: hidden;
+  position: relative;
+  background-size: 100vw 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh; /* 100% da altura da viewport */
+  width: 100vw; /* 100% da largura da viewport */
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #167685;
+
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.397
+  ); /* Ajustei a opacidade do fundo */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10% auto;
+  max-width: 400px;
+}
+
 .sttitle {
   text-align: center;
-  margin-top: 100px;
-  font-family: "Bree Serif", serif;
-  color: #df7c35;
-  font-size: 59px;
-  font-weight: bolder;
+  margin-top: 20px; /* Reduzi a margem superior */
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #167685;
+  font-size: 32px; /* Reduzi o tamanho da fonte */
+  font-weight: bold;
+
+  /* Usei 'bold' em vez de 'bolder' */
 }
+
+.stb2 {
+  margin-bottom: 50px;
+}
+
 .stsub {
   font-family: "Bree Serif", serif;
-  color: #565656;
+  color: rgb(0, 0, 0);
   text-align: center;
-  margin-top: 30px;
-  font-weight: 500;
+  margin-top: 15px; /* Reduzi a margem superior */
 }
+
 .stp {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  width: 90%;
   align-items: center;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 70px;
-  gap: 40%;
+  margin-top: 30px; /* Ajustei a margem superior */
 }
+
 .stb1,
 .stb2 {
   display: flex;
   background-color: #167685;
-  border-radius: 20px;
+  border-radius: 10px; /* Reduzi o raio da borda */
   padding: 10px;
-  height: 150px;
-  width: 25%;
-  padding: 10px;
-  font-family: "Bree Serif", serif;
-  font-size: 17px;
-  color: #a0e4ee;
+  height: 70px; /* Reduzi a altura dos botões */
+  width: 110%; /* Ajustei a largura dos botões */
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 18px; /* Reduzi o tamanho da fonte */
+  color: #ffffff;
   text-align: center;
   align-items: center;
   justify-content: center;
   transition: ease-in-out 0.3s;
   text-decoration: none;
+  margin-top: 5px; /* Ajustei a margem superior */
 }
+
 .stb1:hover,
 .stb2:hover {
   background-color: #249bad;
   box-shadow: 3px 5px 5px #656a7f;
 }
+
 .stb1 {
-  margin-bottom: 50px;
-  margin-top: 30px;
+  margin-bottom: 10px; /* Reduzi a margem inferior */
 }
 
 @media only screen and (max-width: 570px) {
   .stb1,
   .stb2 {
-    width: 30%;
-    height: 200px;
-    padding: 20px;
+    width: 80%;
+    height: 60px; /* Reduzi a altura dos botões para telas menores */
+    font-size: 12px; /* Reduzi o tamanho da fonte para telas menores */
+    padding: 10px;
   }
-  .stb1 {
-    margin-top: 40px;
+}
+@media only screen and (max-width: 768px) {
+  .card {
+    max-width: 80%;
+    margin-top: 30vh;
+  }
+
+  .stb1,
+  .stb2 {
+    font-size: 16px;
+    padding: 8px;
+    height: 60px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .card {
+    max-width: 90%;
+    margin-top: 25vh;
+  }
+
+  .stb1,
+  .stb2 {
+    font-size: 14px;
+    padding: 6px;
+    height: 50px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .card {
+    max-width: 70%;
+    margin-top: 24vh;
+  }
+
+  .stb1,
+  .stb2 {
+    font-size: 14px;
+    padding: 6px;
+    height: 50px;
+  }
+}
+
+@media only screen and (max-width: 415px) {
+  .card {
+    max-width: 90%;
+    margin-top: 30vh;
+  }
+
+  .stb1,
+  .stb2 {
+    font-size: 14px;
+    padding: 6px;
+    height: 50px;
+  }
+}
+
+@media only screen and (max-width: 363px) {
+  .card {
+    max-width: 90%;
+    margin-top: 25vh;
+  }
+
+  .stb1,
+  .stb2 {
+    font-size: 14px;
+    padding: 6px;
+    height: 50px;
   }
 }

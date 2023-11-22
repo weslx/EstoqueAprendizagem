@@ -21,7 +21,6 @@ function ProductPage() {
     }
   }, [name]);
   console.log(products_name);
-
   return (
     <div className="min-h-screen bg-gray-100 ">
       <header className="text-center text-3xl font-bold  bg-[#167685] text-white p-4">
@@ -75,9 +74,7 @@ function ProductPage() {
                           </td>
                           <td
                             className={`py-2 px-4 border ${
-                              product.quantity_item >= 50
-                                ? "text-green-500"
-                                : "text-red-500"
+                              product.quantity_item < 50 ? "text-red-500" : ""
                             }`}
                           >
                             {product.quantity_item}

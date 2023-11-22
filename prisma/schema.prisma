@@ -3,9 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model products {
@@ -16,8 +15,8 @@ model products {
   products_name      products_name   @relation(fields: [products_name_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_products_name_id")
   shelfs_sections    shelfs_sections @relation(fields: [shelfs_sections_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_shelfs_sections_id")
 
-  @@index([products_name_id], map: "idx_products_name_id")
-  @@index([shelfs_sections_id], map: "idx_shelfs_sections_id")
+  @@index([products_name_id], map: "fk_products_name_id")
+  @@index([shelfs_sections_id], map: "fk_shelfs_sections_id")
 }
 
 model products_name {

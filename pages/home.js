@@ -10,6 +10,8 @@ export default function Home() {
   const [section, setSection] = useState("");
   const [quantity_item, setQuantityItem] = useState(0);
   const [removeId, setRemoveId] = useState("");
+  const [message, setMessage] = useState("");
+
   console.log("render");
 
   function handleKeyDown(event) {
@@ -77,42 +79,33 @@ export default function Home() {
 
     console.log(item);
 
-    const response = await fetch("/api/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(item),
-    });
+    try {
+      const response = await axios.post("/api/add", item);
+      const data = response.data;
+      setMessage(`O item foi adicionado com id ${data.id}`);
 
-    if (!response.ok) {
-      const data = await response.json();
-      alert(data.error);
-    } else {
-      const data = await response.json();
-      alert("O item foi adicionado com id" + " " + data.id);
+      setTimeout(() => {
+        setMessage("");
+      }, 5000);
+    } catch (error) {
+      setMessage(`Erro ao adicionar item: ${error.response.data.error}`);
     }
   };
-
   async function handleRemoveSubmit(e) {
     e.preventDefault();
 
-    const response = await fetch(`/api/delete/${removeId}`, {
-      method: "DELETE",
-    });
-
-    if (!response.ok) {
-      const data = await response.json();
-      alert(data.error);
-    } else {
-      const data = await response.json();
-      console.log(data);
-      alert("O item foi excluido com sucesso");
+    try {
+      const response = await axios.delete(`/api/delete/${removeId}`);
+      const data = response.data;
+      setMessage("O item foi excluído com sucesso");
+    } catch (error) {
+      setMessage(`Erro ao remover item: ${error.response.data.error}`);
     }
   }
 
   return (
-    <div class="content">
+    <div className="content">
+      {message && <div className="message">{message}</div>}
       <div class="add">
         <h2 class="">Adicionar Item</h2>
         <form onSubmit={handleAddSubmit} class="addcontent">

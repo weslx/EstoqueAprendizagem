@@ -106,7 +106,7 @@ export default function Home() {
             <input
               class="inpt1"
               type="text"
-              placeholder="Nome e marca"
+              placeholder="Nome e marca ex:(Arroz-Codil)"
               name="name"
               onChange={handleAddChange}
             />

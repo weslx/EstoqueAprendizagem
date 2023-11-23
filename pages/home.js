@@ -14,13 +14,6 @@ export default function Home() {
 
   console.log("render");
 
-  function handleKeyDown(event) {
-    const key = event.key;
-    if (!/[a-zA-Z]/.test(key)) {
-      event.preventDefault();
-    }
-  }
-
   function handleInput1(event) {
     const inputValue = event.target.value;
     const onlyNumbers = inputValue.replace(/[^0-9]/g, "");
@@ -113,11 +106,9 @@ export default function Home() {
             <input
               class="inpt1"
               type="text"
-              placeholder="Nome"
+              placeholder="Nome e marca"
               name="name"
               onChange={handleAddChange}
-              pattern="[A-Za-z]*"
-              onKeyDown={handleKeyDown}
             />
             <input
               class="inpt1"
@@ -127,7 +118,7 @@ export default function Home() {
               onChange={handleAddChange}
               onInput={handleInput1}
               pattern="[0-9]*"
-              maxLength="18"
+              maxLength="10"
             />
 
             <input
@@ -135,7 +126,6 @@ export default function Home() {
               type="text"
               name="shelf"
               placeholder="Prateleira"
-              onKeyDown={handleKeyDown}
               onChange={handleAddChange}
               pattern="[A-Za-z]*"
               maxLength="1"
@@ -150,7 +140,7 @@ export default function Home() {
               onChange={handleAddChange}
               onInput={handleInput}
               pattern="[0-9]{1,3}"
-              maxLength="3"
+              maxLength="2"
             />
             <input
               class="inpt1
@@ -161,7 +151,7 @@ export default function Home() {
               onChange={handleAddChange}
               onInput={handleInput1}
               pattern="[0-9]*"
-              maxLength="18"
+              maxLength="2"
             />
             <button
               id="bt1"

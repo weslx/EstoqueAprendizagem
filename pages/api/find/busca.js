@@ -6,10 +6,11 @@ export default async function handle(req, res) {
   const { name } = req.body; // ID do produto
 
   try {
-    // Encontre o produto que você deseja obter
     const product = await prisma.products_name.findMany({
       where: {
-        name: name,
+        name: {
+          contains: name,
+        },
       },
       include: {
         products: {

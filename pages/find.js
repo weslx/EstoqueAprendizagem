@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import styles from "../styles/find.module.css";
 
 function ProductPage() {
   const router = useRouter();
@@ -20,25 +21,24 @@ function ProductPage() {
         .then((data) => setProduct(data));
     }
   }, [name]);
-  console.log(products_name);
 
   return (
-    <div className="min-h-screen bg-gray-100 ">
-      <header className="text-center text-3xl font-bold  bg-[#167685] text-white p-4">
+    <div className="min-h-screen bg-gray-100">
+      <header className="text-center text-3xl font-bold bg-[#167685] text-white p-4">
         Estoque
       </header>
 
-      <div className="container mx-auto p-4  mt-10">
+      <div className="container mx-auto p-4 mt-10">
         <input
           id="pesquisa"
           type="text"
-          className="border-2 border-gray-300 p-2 rounded-md w-full"
+          className="border-2 border-gray-300 p-2 rounded-md w-full mb-4"
           placeholder="Digite o nome do produto"
         />
         <button
           id="buscar"
           type="submit"
-          className="mx-auto block bg-[#167685] hover:bg-cyan-700 text-white font-bold py-2 px-20 rounded mt-6 "
+          className="mx-auto block bg-[#167685] hover:bg-cyan-700 text-white font-bold py-2 px-20 rounded mb-4"
           onClick={(e) => {
             e.preventDefault();
             const input = document.getElementById("pesquisa");
@@ -48,15 +48,14 @@ function ProductPage() {
           Buscar
         </button>
         {products_name && products_name.length >= 0 && (
-          <div className="mt-4 bg-white p-4 rounded shadow">
+          <div className="bg-white p-4 rounded shadow overflow-x-auto">
             {products_name.map(
               (product_name) =>
                 product_name.products &&
                 product_name.products.length > 0 && (
                   <table
                     key={product_name.id}
-                    className="w-full text-left border-collapse mb-4"
-                  >
+                    className="w-full text-left border-collapse mb-4">
                     <thead>
                       <tr>
                         <th className="py-2 px-4 border">ID</th>
@@ -82,7 +81,6 @@ function ProductPage() {
                           >
                             {product.quantity_item}
                           </td>
-
                           <td className="py-2 px-4 border">
                             {product.shelfs_sections.shelf}
                           </td>
@@ -101,4 +99,5 @@ function ProductPage() {
     </div>
   );
 }
+
 export default ProductPage;

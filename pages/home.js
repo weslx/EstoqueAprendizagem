@@ -127,7 +127,7 @@ export default function Home() {
               onChange={handleAddChange}
               onInput={handleInput1}
               pattern="[0-9]*"
-              maxLength="18"
+              maxLength="10"
             />
 
             <input
@@ -161,7 +161,7 @@ export default function Home() {
               onChange={handleAddChange}
               onInput={handleInput1}
               pattern="[0-9]*"
-              maxLength="18"
+              maxLength="3"
             />
             <button
               id="bt1"

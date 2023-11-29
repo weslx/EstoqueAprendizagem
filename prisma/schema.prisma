@@ -33,7 +33,7 @@ model products_name {
 model shelfs_sections {
   id       Int        @id @default(autoincrement())
   shelf    String     @db.VarChar(1)
-  section  Int        @unique
+  section  Int       
   products products[]
 }
 

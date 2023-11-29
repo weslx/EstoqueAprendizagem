@@ -32,3 +32,10 @@ model shelfs_sections {
   section  Int        @unique
   products products[]
 }
+
+model users {
+  id        Int      @id @default(autoincrement())
+  userId          String   @unique
+  allowance       Int? @default(0)
+  username String? @default("Anonymous")
+}

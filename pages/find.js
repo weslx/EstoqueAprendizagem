@@ -70,6 +70,7 @@ function ProductPage() {
                         <th className="py-2 px-4 border">Quantidade</th>
                         <th className="py-2 px-4 border">Prateleira</th>
                         <th className="py-2 px-4 border">Seção</th>
+                        <th className="py-2 px-4 border">Usuario</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -93,6 +94,9 @@ function ProductPage() {
                           </td>
                           <td className="py-2 px-4 border">
                             {product.shelfs_sections.section}
+                          </td>
+                          <td className="py-2 px-4 border">
+                            {product.users.username}
                           </td>
                         </tr>
                       ))}

@@ -16,6 +16,7 @@ export default async function handle(req, res) {
         products: {
           include: {
             shelfs_sections: true,
+            users: true,
           },
         },
       },

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import axios from "axios";
 
 function ProductPage() {
   const router = useRouter();
@@ -10,16 +11,16 @@ function ProductPage() {
 
   useEffect(() => {
     if (name) {
-      const namereq = { name: name };
-      fetch(`/api/find/busca`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(namereq),
-      })
-        .then((res) => res.json())
-        .then((data) => setProduct(data));
+      const fetchData = async () => {
+        try {
+          const response = await axios.post("/api/find/busca", name);
+          const data = response.data;
+          setProduct(data);
+        } catch (error) {
+          alert("Acesso negado");
+        }
+      };
+      fetchData();
     }
   }, [name]);
 

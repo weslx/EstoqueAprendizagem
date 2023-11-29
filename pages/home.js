@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
+import { useUser } from "@clerk/nextjs";
 
 export default function Home() {
   const [name, setname] = useState("");
@@ -11,6 +12,7 @@ export default function Home() {
   const [quantity_item, setQuantityItem] = useState(0);
   const [removeId, setRemoveId] = useState("");
   const [message, setMessage] = useState("");
+  const { isSignedIn, user, isLoaded } = useUser();
 
   console.log("render");
 
@@ -68,6 +70,7 @@ export default function Home() {
       section,
       shelf,
       quantity_item,
+      nome: user.firstName,
     };
 
     console.log(item);
@@ -106,7 +109,7 @@ export default function Home() {
             <input
               class="inpt1"
               type="text"
-              placeholder="Nome e marca"
+              placeholder="Nome e marca ex:(Arroz-Codil)"
               name="name"
               onChange={handleAddChange}
             />

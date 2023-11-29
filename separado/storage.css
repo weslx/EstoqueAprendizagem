@@ -15,7 +15,7 @@ body {
   align-items: center;
   flex-wrap: wrap;
   flex-direction: row;
-  gap: 10%;
+  gap: 6%;
   margin-top: 7%;
 }
 .add {

@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { getAuth } from "@clerk/nextjs/server";
+import { parse } from "postcss";
 
 const prisma = new PrismaClient();
 
@@ -38,6 +39,9 @@ export default async function handle(req, res) {
         where: {
           products_name: {
             barcode: parseInt(barcode),
+          },
+          shelfs_sections: {
+            section: parseInt(section),
           },
         },
       });

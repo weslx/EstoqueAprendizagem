@@ -1,5 +1,5 @@
 .bodyContainer {
-  background-image: url("../separado/img/estoque_fundo1.jpg");
+  background-image: url("../separado/img/estoque_fundo.jpg");
   overflow: hidden;
   position: relative;
   background-size: 100vw 100vh;
@@ -13,8 +13,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid #167685;
-
+  border: 4px solid #167685;
+  border-radius: 4%;
   justify-content: center;
   backdrop-filter: blur(10px);
   background-color: rgba(

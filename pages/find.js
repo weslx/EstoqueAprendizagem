@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 function ProductPage() {
   const router = useRouter();
@@ -23,10 +25,15 @@ function ProductPage() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <header className="text-center text-3xl font-bold bg-[#167685] text-white p-4">
+      <header className="flex justify-between text-center text-3xl font-bold bg-[#167685] text-white p-4">
+        <div className="self-end justify-self-end p-1">
+          <Link href="/">
+            <ArrowLeft color="white" />
+          </Link>
+        </div>
         Estoque
+        <h1></h1>
       </header>
-
       <div className="container mx-auto p-4 mt-10">
         <input
           id="pesquisa"
@@ -54,7 +61,8 @@ function ProductPage() {
                 product_name.products.length > 0 && (
                   <table
                     key={product_name.id}
-                    className="w-full text-left border-collapse mb-4">
+                    className="w-full text-left border-collapse mb-4"
+                  >
                     <thead>
                       <tr>
                         <th className="py-2 px-4 border">ID</th>

@@ -8,6 +8,7 @@ function ProductPage() {
   const router = useRouter();
   const [name, setId] = useState("");
   const [products_name, setProduct] = useState(null);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     if (name) {
@@ -16,8 +17,14 @@ function ProductPage() {
           const response = await axios.post("/api/find/busca", name);
           const data = response.data;
           setProduct(data);
+          setTimeout(() => {
+            setMessage("");
+          }, 5000);
         } catch (error) {
-          alert("Acesso negado");
+          setMessage("Acesso negado");
+          setTimeout(() => {
+            setMessage("");
+          }, 5000);
         }
       };
       fetchData();
@@ -26,6 +33,7 @@ function ProductPage() {
 
   return (
     <div className="min-h-screen bg-gray-100">
+      {message && <div className="message">{message}</div>}
       <header className="flex justify-between text-center text-3xl font-bold bg-[#167685] text-white p-4">
         <div className="self-end justify-self-end p-1">
           <Link href="/">

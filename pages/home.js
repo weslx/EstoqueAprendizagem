@@ -85,6 +85,9 @@ export default function Home() {
       }, 5000);
     } catch (error) {
       setMessage(`Erro ao adicionar item: ${error.response.data.error}`);
+      setTimeout(() => {
+        setMessage("");
+      }, 5000);
     }
   };
   async function handleRemoveSubmit(e) {

@@ -3,9 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  provider = "mysql"
+  url = env("DATABASE_URL") // uses connection pooling
 }
 
 model products {
@@ -33,7 +32,7 @@ model products_name {
 model shelfs_sections {
   id       Int        @id @default(autoincrement())
   shelf    String     @db.VarChar(1)
-  section  Int        @unique
+  section  Int       
   products products[]
 }
 

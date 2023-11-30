@@ -4,8 +4,9 @@ import { getAuth } from "@clerk/nextjs/server";
 const prisma = new PrismaClient();
 
 export default async function handle(req, res) {
-  const { name } = req.body; // ID do produto
+  const { name } = req.body;
   const { userId } = getAuth(req);
+  console.log(name);
 
   if (!userId) {
     return res.status(400).json({ error: "Usuario nao encontrado" });
@@ -17,20 +18,13 @@ export default async function handle(req, res) {
     });
   }
 
-  if (!user) {
-    const useradc = await prisma.users.create({
-      data: {
-        userId: userId,
-        username: nome,
-      },
-    });
-  }
   if (user.allowance === 1) {
     try {
       const product = await prisma.products_name.findMany({
         where: {
           name: {
             contains: name,
+            mode: "insensitive",
           },
         },
         include: {
@@ -44,6 +38,7 @@ export default async function handle(req, res) {
       });
 
       res.json(product);
+      console.log(product);
     } catch (error) {
       res.status(500).json({ error: "Nao foi possivel encontrar o produto" });
     } finally {

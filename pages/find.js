@@ -14,7 +14,7 @@ function ProductPage() {
     if (name) {
       const fetchData = async () => {
         try {
-          const response = await axios.post("/api/find/busca", name);
+          const response = await axios.post("/api/find/busca", { name });
           const data = response.data;
           setProduct(data);
           setTimeout(() => {

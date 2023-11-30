@@ -25,10 +25,13 @@ export default async function handle(req, res) {
         username: nome,
       },
     });
+    return res.status(400).json({
+      error: "Seu usuario foi criado com sucesso, tente adicionar novamente.",
+    });
   }
 
-  if (user.allowance === 1) {
-    try {
+  try {
+    if (user.allowance === 1) {
       if (!name || !barcode || !shelf || !section || !quantity_item) {
         return res
           .status(400)
@@ -72,13 +75,13 @@ export default async function handle(req, res) {
       });
 
       res.json(createdProduct);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: "Ocorreu um erro ao criar o produto" });
-    } finally {
-      await prisma.$disconnect();
+    } else {
+      return res.status(400).json({ error: "Acesso negado" });
     }
-  } else {
-    return res.status(400).json({ error: "Acesso negado" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Ocorreu um erro ao criar o produto" });
+  } finally {
+    await prisma.$disconnect();
   }
 }

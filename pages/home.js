@@ -131,7 +131,7 @@ export default function Home() {
               class="inpt1"
               type="text"
               name="shelf"
-              placeholder="Prateleira"
+              placeholder="Prateleira Ex:(a)"
               onChange={handleAddChange}
               pattern="[A-Za-z]*"
               maxLength="1"
@@ -141,7 +141,7 @@ export default function Home() {
               class="inpt1
 "
               type="text"
-              placeholder="Seção"
+              placeholder="Seção Ex:(2)"
               name="section"
               onChange={handleAddChange}
               onInput={handleInput}

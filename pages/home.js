@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
+import styles from "../styles/home.module.css";
 
 export default function Home() {
   const [name, setname] = useState("");
@@ -103,21 +104,21 @@ export default function Home() {
   }
 
   return (
-    <div className="content">
-      {message && <div className="message">{message}</div>}
-      <div class="add">
-        <h2 class="">Adicionar Item</h2>
-        <form onSubmit={handleAddSubmit} class="addcontent">
-          <div class="inputs">
+    <div className={styles.content}>
+      {message && <div className={styles.message}>{message}</div>}
+      <div className={styles.add}>
+        <h2 className={styles.title}>Adicionar Item</h2>
+        <form onSubmit={handleAddSubmit} className={styles.addcontent}>
+          <div className={styles.inputs}>
             <input
-              class="inpt1"
+              className={styles.inpt1}
               type="text"
               placeholder="Nome e marca ex:(Arroz-Codil)"
               name="name"
               onChange={handleAddChange}
             />
             <input
-              class="inpt1"
+              className={styles.inpt1}
               type="text"
               name="barcode"
               placeholder="Codigo de barras"
@@ -126,9 +127,8 @@ export default function Home() {
               pattern="[0-9]*"
               maxLength="10"
             />
-
             <input
-              class="inpt1"
+              className={styles.inpt1}
               type="text"
               name="shelf"
               placeholder="Prateleira Ex:(a)"
@@ -136,10 +136,8 @@ export default function Home() {
               pattern="[A-Za-z]*"
               maxLength="1"
             />
-
             <input
-              class="inpt1
-"
+              className={styles.inpt1}
               type="text"
               placeholder="Seção Ex:(2)"
               name="section"
@@ -149,8 +147,7 @@ export default function Home() {
               maxLength="2"
             />
             <input
-              class="inpt1
-"
+              className={styles.inpt1}
               type="text"
               name="quantity_item"
               placeholder="Quantidade do Item"
@@ -159,35 +156,29 @@ export default function Home() {
               pattern="[0-9]*"
               maxLength="2"
             />
-            <button
-              id="bt1"
-              class="w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600"
-            >
+            <button id="bt1" className={styles.bt1}>
               Adicionar
             </button>
           </div>
         </form>
       </div>
-      <div class="linha"></div>
+      <div className={styles.linha}></div>
       <Link href="/find">
-        <button id="bt">Ver tabela</button>
+        <button className={styles.bt}>Ver tabela</button>
       </Link>
-      <div class="linha"></div>
-      <div class="rmv">
-        <h2 class="">Remover Item</h2>
-        <form onSubmit={handleRemoveSubmit} class="addcontent">
+      <div className={styles.linha}></div>
+      <div className={styles.rmv}>
+        <h2 className={styles.title}>Remover Item</h2>
+        <form onSubmit={handleRemoveSubmit} className={styles.addcontent}>
           <div>
             <input
-              class="inpt2"
+              className={styles.inpt2}
               type="text"
               placeholder="ID"
               name="id"
               onChange={handleRemoveChange}
             />
-            <button
-              id="bt2"
-              class="w-full py-2 px-4 bg-red-500 text-white rounded hover:bg-red-600"
-            >
+            <button id="bt2" className={styles.bt2}>
               Remover
             </button>
           </div>

@@ -4,7 +4,7 @@ import { getAuth } from "@clerk/nextjs/server";
 const prisma = new PrismaClient();
 
 export default async function handle(req, res) {
-  const { name } = req.body;
+  const { name, nome } = req.body; // name = Nome do produto.  // nome = nome do usuario
   const { userId } = getAuth(req);
   console.log(name);
 
@@ -15,6 +15,18 @@ export default async function handle(req, res) {
       where: {
         userId: userId,
       },
+    });
+  }
+
+  if (!user) {
+    const useradc = await prisma.users.create({
+      data: {
+        userId: userId,
+        username: nome,
+      },
+    });
+    return res.status(400).json({
+      error: "Seu usuario foi criado com sucesso, tente adicionar novamente.",
     });
   }
 

@@ -3,25 +3,31 @@ import { useRouter } from "next/router";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import axios from "axios";
+import { useUser } from "@clerk/nextjs";
 
 function ProductPage() {
   const router = useRouter();
   const [name, setId] = useState("");
   const [products_name, setProduct] = useState(null);
   const [message, setMessage] = useState("");
+  const { user } = useUser();
 
   useEffect(() => {
     if (name) {
+      const item = {
+        name,
+        nome: user.firstName,
+      };
       const fetchData = async () => {
         try {
-          const response = await axios.post("/api/find/busca", { name });
+          const response = await axios.post("/api/find/busca", item);
           const data = response.data;
           setProduct(data);
           setTimeout(() => {
             setMessage("");
           }, 5000);
         } catch (error) {
-          setMessage("Acesso negado");
+          setMessage(error.response.data.error);
           setTimeout(() => {
             setMessage("");
           }, 5000);
@@ -29,7 +35,7 @@ function ProductPage() {
       };
       fetchData();
     }
-  }, [name]);
+  }, [name, user]);
 
   return (
     <div className="min-h-screen bg-gray-100">
